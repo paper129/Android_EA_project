@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@drawable/menu_header"
+    android:paddingLeft="15dp">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/menu_icon1"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:text="Name :"
+                android:textColor="#FFF"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="martintt"
+                android:textColor="#FFF"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:text="Email :"
+            android:textColor="#FFF"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="martintt123@gmail.com"
+            android:textColor="#FFF"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed"/>
+    </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
