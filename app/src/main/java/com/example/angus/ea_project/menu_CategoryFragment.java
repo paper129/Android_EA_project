@@ -13,7 +13,7 @@ import android.widget.TextView;
  * A simple {@link Fragment} subclass.
  */
 public class menu_CategoryFragment extends Fragment {
-
+    View view;
 
     public menu_CategoryFragment() {
         // Required empty public constructor
@@ -23,8 +23,9 @@ public class menu_CategoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu__category, container, false);
-    }
+        view = inflater.inflate(R.layout.fragment_menu__category, container, false);
+
+        return view;
+}
 
 }
