@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+
+
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -18,13 +21,16 @@ public class menu_HotNewsFragment extends Fragment {
     public menu_HotNewsFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        fetchData();
         return inflater.inflate(R.layout.fragment_menu__hot_news, container, false);
+    }
+    public void fetchData ()
+    {
+
     }
 
 }

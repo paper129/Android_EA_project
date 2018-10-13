@@ -9,11 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class menu_CategoryFragment extends Fragment {
     View view;
+    private String url1="";
 
     public menu_CategoryFragment() {
         // Required empty public constructor
