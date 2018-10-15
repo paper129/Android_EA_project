@@ -46,8 +46,9 @@ public class MainActivity extends AppCompatActivity {
              NavigationView.OnNavigationItemSelectedListener() {
 
                 public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    int positionId=0;
                     Fragment frag = null;
-                    int positionId = menuItem.getItemId();
+                    positionId = menuItem.getItemId();
 
                 if (positionId == R.id.Hot_News) {
 
