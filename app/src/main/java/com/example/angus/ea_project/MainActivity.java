@@ -14,7 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
-//martintt123
+
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
