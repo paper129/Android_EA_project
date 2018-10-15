@@ -44,18 +44,19 @@ public class menu_HotNewsFragment extends Fragment {
 
 
         String url = "https://newsapi.org/v2/top-headlines?country=hk&apiKey=307781e9e6ca4234a05abe536b55252d";
-        StringRequest strReq = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
 
-                    public void onResponse(String response) {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+
+                    public void onResponse(JSONObject response) {
                         try {
                             //get from data to JSON_OBJECT
-                            JSONObject JSON_oj = new JSONObject(response);
-                            JSONObject status_oj = JSON_oj.getJSONObject("status");
+                            JSONObject status_oj = response.getJSONObject("status");
                             String STATUS = status_oj.getString("status");
-                            JSONObject total_oj = JSON_oj.getJSONObject("totalResults");
+                            JSONObject total_oj = response.getJSONObject("totalResults");
                             int TOTAL = status_oj.getInt("totalResults");
                             //get from data to JSON_ARRAY
-                            JSONArray articles_array = JSON_oj.getJSONArray("articles");
+                            JSONArray articles_array = response.getJSONArray("articles");
                             for (int i = 0; i < TOTAL; i++) {
                                 JSONObject articles_oj = articles_array.getJSONObject(i);
                                 JSONObject Source_oj = articles_oj.getJSONObject("source");
@@ -67,6 +68,7 @@ public class menu_HotNewsFragment extends Fragment {
                                 String time = articles_oj.getString("publishedAt");
 
                                 Log.d("------------>", title);
+
 
                             }
                         } catch (JSONException e) {
@@ -84,7 +86,7 @@ public class menu_HotNewsFragment extends Fragment {
             }
         });
 
-        queue.add(strReq);
+        queue.add(request);
         return view;
     }
 
