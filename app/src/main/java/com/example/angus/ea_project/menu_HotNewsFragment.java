@@ -45,9 +45,7 @@ public class menu_HotNewsFragment extends Fragment {
     private TextView tv;
     private ImageView imageView;
     List<Map<String, Object>> mList;
-    private int TOTAL;
-    private String name[]=new String[TOTAL],author[]=new String[TOTAL],title[]=new String[TOTAL],description[]=new String[TOTAL],img_url[]=new String[TOTAL],time[]=new String[TOTAL];
-    Context c =getContext().getApplicationContext();
+
     public menu_HotNewsFragment() {
         // Required empty public constructor
     }
@@ -55,11 +53,11 @@ public class menu_HotNewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_menu__hot_news, container, false);
-        RequestQueue queue = Volley.newRequestQueue(c);
-        //lv=(ListView)view.findViewById(R.id.lv);
-        //imageView=(ImageView)view.findViewById(R.id.imgView);
-        //tv=(TextView)view.findViewById(R.id.txtView);
-        //mList = new ArrayList<Map<String,Object>>();
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        lv=(ListView)view.findViewById(R.id.lv);
+        imageView=(ImageView)view.findViewById(R.id.imgView);
+        tv=(TextView)view.findViewById(R.id.txtView);
+        mList = new ArrayList<Map<String,Object>>();
 
         String url = "https://newsapi.org/v2/top-headlines?country=hk&apiKey=307781e9e6ca4234a05abe536b55252d";
 
@@ -67,12 +65,14 @@ public class menu_HotNewsFragment extends Fragment {
 
                     public void onResponse(String response) {
                         try {
+                            int TOTAL;
                             //get from data to JSON_OBJECT
                             JSONObject JSON_oj = new JSONObject(response);
                             String STATUS = JSON_oj.getString("status");
                             TOTAL = JSON_oj.getInt("totalResults");
                             //get from data to JSON_ARRAY
                             JSONArray articles_array = JSON_oj.getJSONArray("articles");
+                            String name[]=new String[TOTAL],author[]=new String[TOTAL],title[]=new String[TOTAL],description[]=new String[TOTAL],img_url[]=new String[TOTAL],time[]=new String[TOTAL];
 
 
                             for (int i = 0; i < TOTAL; i++) {
@@ -86,17 +86,16 @@ public class menu_HotNewsFragment extends Fragment {
                                 time[i] = articles_oj.getString("publishedAt");
 
                                 Log.d("------------>", title[i]);
-                            }
 
-                            /*for (int i = 0; i < TOTAL; i++) {
                                 Map<String, Object> item = new HashMap<String, Object>();
-                                //item.put("imgView", imageView[i]); //data in key-value pair
+                                Picasso.with(getActivity().getApplicationContext()).load(img_url[i]).into(imageView);
                                 item.put("txtView", title[i]);
                                 mList.add(item);
                             }
-                            SimpleAdapter adapter = new SimpleAdapter(c, mList, R.layout.list_item1, new String[] { "imgView", "txtView" }, new int[] { R.id.imgView ,R.id.txtView });
-                            lv.setAdapter(adapter);
-                            lv.setOnItemClickListener(listViewOnItemClick);*/
+
+
+
+
 
 
                         } catch (JSONException e) {
@@ -113,22 +112,20 @@ public class menu_HotNewsFragment extends Fragment {
                 error.printStackTrace();
             }
         });
-
-
-
-
-
-
-
         queue.add(strReq);
+        SimpleAdapter adapter = new SimpleAdapter(getActivity().getApplicationContext(), mList, R.layout.list_item1, new String[] {"txtView" }, new int[] { R.id.txtView });
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(listViewOnItemClick);
+
+
         return view;
     }
-    /*private ListView.OnItemClickListener listViewOnItemClick = new ListView.OnItemClickListener() {
+    private ListView.OnItemClickListener listViewOnItemClick = new ListView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         }
-    };*/
+    };
 }
 
 
