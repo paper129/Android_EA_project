@@ -1,5 +1,6 @@
 package com.example.angus.ea_project;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,19 +19,24 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
-
+    Fragment frag1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         setNavigationDrawer();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
+        frag1 = new menu_HotNewsFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame, frag1); // replace a Fragment with Frame Layout
+        transaction.commit();
 
         getSupportActionBar().setTitle("Hot News");
     }
@@ -47,21 +53,21 @@ public class MainActivity extends AppCompatActivity {
 
                 public boolean onNavigationItemSelected(MenuItem menuItem) {
                     int positionId=0;
-                    Fragment frag = null;
+                    Fragment frag2 = null;
                     positionId = menuItem.getItemId();
 
                 if (positionId == R.id.Hot_News) {
 
                     drawerLayout.closeDrawers();
                     getSupportActionBar().setTitle("Hot News");
-                    frag = new menu_HotNewsFragment();
+                    frag2 = new menu_HotNewsFragment();
                     Log.d("----------logd","1");
 
                 } else if (positionId == R.id.Category) {
 
                     drawerLayout.closeDrawers();
                     getSupportActionBar().setTitle("Category");
-                    frag = new menu_CategoryFragment();
+                    frag2 = new menu_CategoryFragment();
                     Log.d("----------logd","2");
 
 
@@ -69,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
                     drawerLayout.closeDrawers();
                     getSupportActionBar().setTitle("News Map");
-                    frag = new menu_NewsMapFragment();
+                    frag2 = new menu_NewsMapFragment();
                     Log.d("----------logd","3");
 
 
@@ -77,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
                     drawerLayout.closeDrawers();
                     getSupportActionBar().setTitle("Music");
-                    frag = new menu_MusicFragment();
+                    frag2 = new menu_MusicFragment();
                     Log.d("----------logd","4");
 
 
@@ -85,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
                     drawerLayout.closeDrawers();
                     getSupportActionBar().setTitle("Setting");
-                    frag = new menu_SettingFragment();
+                    frag2 = new menu_SettingFragment();
                     Log.d("----------logd","5");
 
                 }
@@ -93,14 +99,14 @@ public class MainActivity extends AppCompatActivity {
 
                     drawerLayout.closeDrawers();
                     getSupportActionBar().setTitle("Setting");
-                    frag = new menu_LoginFragment();
+                    frag2 = new menu_LoginFragment();
                     Log.d("----------logd","6");
 
                 }
 
-                    if (frag != null) {
+                    if (frag2 != null) {
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.frame, frag); // replace a Fragment with Frame Layout
+                        transaction.replace(R.id.frame, frag2); // replace a Fragment with Frame Layout
                         transaction.commit(); // commit the changes
                         drawerLayout.closeDrawers(); // close the all open Drawer Views
                         Log.d("----------logd","Passed");

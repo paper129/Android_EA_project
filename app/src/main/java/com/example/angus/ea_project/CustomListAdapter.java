@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Angus on 16/10/2018.
@@ -44,7 +44,17 @@ public class CustomListAdapter extends ArrayAdapter<List_Item>{
 
         List_Item item = getItem(position); // Object
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imgView);
-        Picasso.with(getContext().getApplicationContext()).load(item.getImage());
+        if(item.getImage()=="null")
+        {
+            Log.d("IMAGe","NO");
+            imageView.setImageResource(R.drawable.no_image);
+            imageView.getLayoutParams().height = 310;
+            imageView.getLayoutParams().width = 450;
+        }
+        else {
+            Picasso.with(getContext().getApplicationContext()).load(item.getImage()).resize(450, 300).into(imageView);
+        }
+        Log.d("------------>",item.getImage());
         TextView textView = (TextView) convertView.findViewById(R.id.txtView);
         textView.setText(item.getTitle());
 
