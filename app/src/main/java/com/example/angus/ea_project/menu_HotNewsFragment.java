@@ -2,6 +2,7 @@ package com.example.angus.ea_project;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -104,6 +105,14 @@ public class menu_HotNewsFragment extends Fragment {
                                 getActivity().getApplicationContext(),R.layout.list_item1,arrayList
                         );
                         lv.setAdapter(adapter);
+                        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Intent intent = new Intent(getActivity().getApplicationContext(), news_detail.class);
+                                startActivity(intent); // start Intent
+                            }
+                        });
+
 
                     }
                 }, new Response.ErrorListener() {
@@ -121,6 +130,7 @@ public class menu_HotNewsFragment extends Fragment {
         return view;
     }
 
-}
+
+    }
 
 

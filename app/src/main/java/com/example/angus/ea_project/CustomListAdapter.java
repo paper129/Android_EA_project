@@ -12,9 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 /**
@@ -57,7 +55,7 @@ public class CustomListAdapter extends ArrayAdapter<List_Item>{
         Log.d("------------>",item.getImage());
         TextView textView = (TextView) convertView.findViewById(R.id.txtView);
         textView.setText(item.getTitle());
-
         return convertView;
     }
+
 }
