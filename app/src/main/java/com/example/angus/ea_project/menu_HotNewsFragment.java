@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.os.AsyncTaskCompat;
+import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,10 +30,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,8 +41,9 @@ import java.util.Map;
  */
 public class menu_HotNewsFragment extends Fragment {
     private ListView lv;
-    private TextView tv;
+
     private ImageView imageView;
+    ArrayList<List_Item> arrayList;
     List<Map<String, Object>> mList;
 
     public menu_HotNewsFragment() {
@@ -54,10 +54,9 @@ public class menu_HotNewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_menu__hot_news, container, false);
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        lv=(ListView)view.findViewById(R.id.lv);
-        imageView=(ImageView)view.findViewById(R.id.imgView);
-        tv=(TextView)view.findViewById(R.id.txtView);
-        mList = new ArrayList<Map<String,Object>>();
+
+        arrayList = new ArrayList<>();
+        lv = (ListView) view.findViewById(R.id.lv);
 
         String url = "https://newsapi.org/v2/top-headlines?country=hk&apiKey=307781e9e6ca4234a05abe536b55252d";
 
@@ -77,32 +76,35 @@ public class menu_HotNewsFragment extends Fragment {
 
                             for (int i = 0; i < TOTAL; i++) {
                                 JSONObject articles_oj = articles_array.getJSONObject(i);
+
                                 JSONObject Source_oj = articles_oj.getJSONObject("source");
+                                arrayList.add(new List_Item(
+                                        articles_oj.getString("urlToImage"),
+                                        articles_oj.getString("title")
+                                ));
+
                                 name[i] = Source_oj.getString("name");
                                 author[i] = articles_oj.getString("author");
-                                title[i] = articles_oj.getString("title");
+
                                 description[i] = articles_oj.getString("description");
-                                img_url[i] = articles_oj.getString("urlToImage");
+
                                 time[i] = articles_oj.getString("publishedAt");
 
-                                Log.d("------------>", title[i]);
+                                Log.d("------------>", "fetching");
 
-                                Map<String, Object> item = new HashMap<String, Object>();
-                                Picasso.with(getActivity().getApplicationContext()).load(img_url[i]).into(imageView);
-                                item.put("txtView", title[i]);
-                                mList.add(item);
+
                             }
-
-
-
-
-
 
                         } catch (JSONException e) {
                             Log.d("------------>","ERROR1");
                             e.printStackTrace();
 
                         }
+                        CustomListAdapter adapter = new CustomListAdapter(
+                                getActivity().getApplicationContext(),R.layout.list_item1,arrayList
+                        );
+                        lv.setAdapter(adapter);
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -113,19 +115,12 @@ public class menu_HotNewsFragment extends Fragment {
             }
         });
         queue.add(strReq);
-        SimpleAdapter adapter = new SimpleAdapter(getActivity().getApplicationContext(), mList, R.layout.list_item1, new String[] {"txtView" }, new int[] { R.id.txtView });
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(listViewOnItemClick);
+
 
 
         return view;
     }
-    private ListView.OnItemClickListener listViewOnItemClick = new ListView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        }
-    };
 }
 
 
