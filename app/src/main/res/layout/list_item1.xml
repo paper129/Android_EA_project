@@ -17,5 +17,7 @@
         android:layout_weight="1"
         android:textSize="20sp"
         android:maxLines="4"
-        android:lines="4"/>
+        android:lines="4"
+        android:paddingLeft="5sp"
+        android:paddingTop="5sp"/>
 </LinearLayout>
