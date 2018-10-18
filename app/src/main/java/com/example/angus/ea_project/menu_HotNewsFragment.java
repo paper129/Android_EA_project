@@ -46,7 +46,8 @@ public class menu_HotNewsFragment extends Fragment {
     private ImageView imageView;
     ArrayList<List_Item> arrayList;
     List<Map<String, Object>> mList;
-
+    String name[],author[],title[],description[],img_url[],time[];
+    int TOTAL;
     public menu_HotNewsFragment() {
         // Required empty public constructor
     }
@@ -65,24 +66,29 @@ public class menu_HotNewsFragment extends Fragment {
 
                     public void onResponse(String response) {
                         try {
-                            int TOTAL;
+
                             //get from data to JSON_OBJECT
                             JSONObject JSON_oj = new JSONObject(response);
                             String STATUS = JSON_oj.getString("status");
                             TOTAL = JSON_oj.getInt("totalResults");
                             //get from data to JSON_ARRAY
                             JSONArray articles_array = JSON_oj.getJSONArray("articles");
-                            String name[]=new String[TOTAL],author[]=new String[TOTAL],title[]=new String[TOTAL],description[]=new String[TOTAL],img_url[]=new String[TOTAL],time[]=new String[TOTAL];
 
+                            name=new String[TOTAL];
+                            author = new String[TOTAL];
+                            title=new String[TOTAL];
+                            description = new String[TOTAL];
+                            img_url = new String[TOTAL];
+                            time = new String[TOTAL];
 
                             for (int i = 0; i < TOTAL; i++) {
                                 JSONObject articles_oj = articles_array.getJSONObject(i);
-
                                 JSONObject Source_oj = articles_oj.getJSONObject("source");
-                                arrayList.add(new List_Item(
-                                        articles_oj.getString("urlToImage"),
-                                        articles_oj.getString("title")
-                                ));
+
+
+                                title[i]= articles_oj.getString("title");
+                                img_url[i] = articles_oj.getString("urlToImage");
+                                arrayList.add(new List_Item(img_url[i],title[i]));
 
                                 name[i] = Source_oj.getString("name");
                                 author[i] = articles_oj.getString("author");
@@ -91,7 +97,7 @@ public class menu_HotNewsFragment extends Fragment {
 
                                 time[i] = articles_oj.getString("publishedAt");
 
-                                Log.d("------------>", "fetching");
+                                Log.d("position",title[i]);
 
 
                             }
@@ -109,6 +115,12 @@ public class menu_HotNewsFragment extends Fragment {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 Intent intent = new Intent(getActivity().getApplicationContext(), news_detail.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("title",title[position]);
+                                bundle.putString("description",description[position]);
+                                bundle.putString("publishedAt",time[position]);
+                                intent.putExtras(bundle);
+                                Log.d("position",Integer.toString(position));
                                 startActivity(intent); // start Intent
                             }
                         });
