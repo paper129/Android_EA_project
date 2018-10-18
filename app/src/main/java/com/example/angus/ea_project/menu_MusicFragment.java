@@ -7,6 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import java.net.URL;
+import android.app.Activity;
+import android.net.Uri;
+import android.os.Bundle;
+import android.widget.MediaController;
+import android.widget.VideoView;
+
 
 
 /**
@@ -14,17 +21,18 @@ import android.widget.TextView;
  */
 public class menu_MusicFragment extends Fragment {
 
-
-    public menu_MusicFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu__music, container, false);
-    }
-
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_vv);//***************
+        myVideoView = (VideoView)this.findViewById(R.id.myVideoView);
+        MediaController mc;
+        mc = new MediaController(this);
+        myVideoView.setMediaController(mc);
+        urlStream = "http://rthk.hk/live2.m3u";
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                myVideoView.setVideoURI(Uri.parse(urlStream));
+            }
 }
