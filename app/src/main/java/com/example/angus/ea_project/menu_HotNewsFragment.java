@@ -1,6 +1,7 @@
 package com.example.angus.ea_project;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -43,7 +44,7 @@ import java.util.Map;
  */
 public class menu_HotNewsFragment extends Fragment {
     private ListView lv;
-    private ProgressBar spinner;
+    private ProgressDialog pd;
 
     private ImageView imageView;
     ArrayList<List_Item> arrayList;
@@ -58,10 +59,9 @@ public class menu_HotNewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_menu__hot_news, container, false);
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        spinner = (ProgressBar)view.findViewById(R.id.progressBar1);
         arrayList = new ArrayList<>();
         lv = (ListView) view.findViewById(R.id.lv);
-        spinner.setVisibility(View.GONE);
+
 
         String url = "https://newsapi.org/v2/top-headlines?country=hk&apiKey=307781e9e6ca4234a05abe536b55252d";
 
@@ -88,32 +88,55 @@ public class menu_HotNewsFragment extends Fragment {
                                 JSONObject articles_oj = articles_array.getJSONObject(i);
                                 JSONObject Source_oj = articles_oj.getJSONObject("source");
 
-
-                                title[i]= articles_oj.getString("title");
-                                img_url[i] = articles_oj.getString("urlToImage");
-                                arrayList.add(new List_Item(img_url[i],title[i]));
-
-                                name[i] = Source_oj.getString("name");
-                                author[i] = articles_oj.getString("author");
-
-                                description[i] = articles_oj.getString("description");
-
-                                time[i] = articles_oj.getString("publishedAt");
-
-                                Log.d("position",title[i]);
-
-
+                                        description[i] =articles_oj.getString("description");;
+                                        title[i] = articles_oj.getString("title");
+                                        img_url[i] = articles_oj.getString("urlToImage");
+                                        name[i] = Source_oj.getString("name");
+                                        author[i] = articles_oj.getString("author");
+                                        time[i] = articles_oj.getString("publishedAt");
                             }
-                            spinner.setVisibility(View.VISIBLE);
 
+                            for(int i=0;i<TOTAL;i++)
+                            {
+                                if(description[i]=="null")
+                                {
+                                    for (int j=i+1;j<TOTAL;j++)
+                                    {
+                                        description[i] = description[j];
+                                        title[i] = title[j];
+                                        img_url[i] = img_url[j];
+                                        name[i] = name[j];
+                                        author[i] = author[j];
+                                        time[i]=time[j];
+                                    }
+                                    TOTAL--;
+                                    i--;
+                                }
+                                else
+                                {
+                                    int len = img_url[i].length();
+                                    String format = img_url[i].substring(len-3, len);
+
+                                    if(format.equals("jpg") || format.equals("png")) {
+                                        arrayList.add(new List_Item(img_url[i], title[i]));
+                                    }
+                                    else
+                                    {
+                                        img_url[i]="NO_IMG";
+                                        arrayList.add(new List_Item(img_url[i], title[i]));
+                                    }
+
+                                }
+                            }
+
+                                pd.dismiss();
                         } catch (JSONException e) {
                             Log.d("------------>","ERROR1");
                             e.printStackTrace();
 
                         }
                         CustomListAdapter adapter = new CustomListAdapter(
-                                getActivity().getApplicationContext(),R.layout.list_item1,arrayList
-                        );
+                                getActivity().getApplicationContext(),R.layout.list_item1,arrayList);
                         lv.setAdapter(adapter);
                         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
@@ -136,14 +159,17 @@ public class menu_HotNewsFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
                 error.printStackTrace();
             }
         });
+        pd = new ProgressDialog(getActivity());
+        pd.setMessage("Loading..");
+        pd.setTitle("Getting Data");
+        pd.show();
         queue.add(strReq);
 
-
         return view;
+
     }
 
 

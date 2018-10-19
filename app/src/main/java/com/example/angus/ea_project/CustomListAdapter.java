@@ -42,7 +42,7 @@ public class CustomListAdapter extends ArrayAdapter<List_Item>{
 
         List_Item item = getItem(position); // Object
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imgView);
-        if(item.getImage()=="null")
+        if(item.getImage()=="NO_IMG")
         {
             Log.d("IMAGe","NO");
             imageView.setImageResource(R.drawable.no_image);
