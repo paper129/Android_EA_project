@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import java.net.URL;
 import android.app.Activity;
@@ -23,9 +22,8 @@ import android.widget.VideoView;
 public class menu_MusicFragment extends Fragment {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_menu__music, container, false);
         setContentView(R.layout.activity_main_vv);//***************
         myVideoView = (VideoView)this.findViewById(R.id.myVideoView);
         MediaController mc;
@@ -34,11 +32,7 @@ public class menu_MusicFragment extends Fragment {
         urlStream = "http://rthk.hk/live2.m3u";
         runOnUiThread(new Runnable() {
             @Override
-            public void run() {myVideoView.setVideoURI(Uri.parse(urlStream))}
-
-
-
-        }
-        return view;
-    }
+            public void run() {
+                myVideoView.setVideoURI(Uri.parse(urlStream));
+            }
 }
