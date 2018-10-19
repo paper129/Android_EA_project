@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ import java.util.Map;
  */
 public class menu_HotNewsFragment extends Fragment {
     private ListView lv;
+    private ProgressBar spinner;
 
     private ImageView imageView;
     ArrayList<List_Item> arrayList;
@@ -56,9 +58,10 @@ public class menu_HotNewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_menu__hot_news, container, false);
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-
+        spinner = (ProgressBar)view.findViewById(R.id.progressBar1);
         arrayList = new ArrayList<>();
         lv = (ListView) view.findViewById(R.id.lv);
+        spinner.setVisibility(View.GONE);
 
         String url = "https://newsapi.org/v2/top-headlines?country=hk&apiKey=307781e9e6ca4234a05abe536b55252d";
 
@@ -101,6 +104,7 @@ public class menu_HotNewsFragment extends Fragment {
 
 
                             }
+                            spinner.setVisibility(View.VISIBLE);
 
                         } catch (JSONException e) {
                             Log.d("------------>","ERROR1");
@@ -119,6 +123,7 @@ public class menu_HotNewsFragment extends Fragment {
                                 bundle.putString("title",title[position]);
                                 bundle.putString("description",description[position]);
                                 bundle.putString("publishedAt",time[position]);
+                                bundle.putString("urlToImage",img_url[position]);
                                 intent.putExtras(bundle);
                                 Log.d("position",Integer.toString(position));
                                 startActivity(intent); // start Intent
@@ -136,7 +141,6 @@ public class menu_HotNewsFragment extends Fragment {
             }
         });
         queue.add(strReq);
-
 
 
         return view;

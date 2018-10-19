@@ -4,6 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.angus.ea_project.menu_HotNewsFragment">
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"/>
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.constraint.ConstraintLayout
@@ -12,7 +19,7 @@
 
         <ListView
             android:id="@+id/lv"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="607dp"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
