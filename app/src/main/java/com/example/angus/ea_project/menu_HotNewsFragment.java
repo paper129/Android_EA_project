@@ -115,16 +115,23 @@ public class menu_HotNewsFragment extends Fragment {
                                 else
                                 {
                                     int len = img_url[i].length();
-                                    String format = img_url[i].substring(len-3, len);
-
-                                    if(format.equals("jpg") || format.equals("png")) {
-                                        arrayList.add(new List_Item(img_url[i], title[i]));
+                                    if(len != 0) {
+                                        String format = img_url[i].substring(len-3, len);
+                                        if(format.equals("jpg") || format.equals("png")) {
+                                            arrayList.add(new List_Item(img_url[i], title[i]));
+                                        }
+                                        else
+                                        {
+                                            img_url[i]="NO_IMG";
+                                            arrayList.add(new List_Item(img_url[i], title[i]));
+                                        }
                                     }
                                     else
                                     {
                                         img_url[i]="NO_IMG";
                                         arrayList.add(new List_Item(img_url[i], title[i]));
                                     }
+
 
                                 }
                             }
@@ -147,6 +154,8 @@ public class menu_HotNewsFragment extends Fragment {
                                 bundle.putString("description",description[position]);
                                 bundle.putString("publishedAt",time[position]);
                                 bundle.putString("urlToImage",img_url[position]);
+                                bundle.putString("name",name[position]);
+                                bundle.putString("author",author[position]);
                                 intent.putExtras(bundle);
                                 Log.d("position",Integer.toString(position));
                                 startActivity(intent); // start Intent

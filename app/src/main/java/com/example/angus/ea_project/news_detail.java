@@ -13,11 +13,13 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 public class news_detail extends AppCompatActivity {
-    String title,description,time,image_url;
+    String title,description,time,image_url,name,author;
     ImageView img_view;
     TextView textView_description;
     TextView textView_title;
     TextView textView_time;
+    TextView textView_name;
+    TextView textView_author;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,12 +33,16 @@ public class news_detail extends AppCompatActivity {
         textView_description = (TextView)  findViewById(R.id.description);
         textView_title = (TextView) findViewById(R.id.title) ;
         textView_time = (TextView) findViewById(R.id.time);
+        textView_name = (TextView) findViewById(R.id.name);
+        textView_author = (TextView) findViewById(R.id.author);
         Intent it = getIntent();
         Bundle bundle = it.getExtras();
         title = bundle.getString("title");
         description ="      "+bundle.getString("description");
         time = bundle.getString("publishedAt");
         image_url = bundle.getString("urlToImage");
+        name = bundle.getString("name");
+        author = bundle.getString("author");
         getSupportActionBar().setTitle("News");
 
         Log.d("------------>img",image_url);
@@ -51,6 +57,8 @@ public class news_detail extends AppCompatActivity {
         textView_description.setText(description);
         textView_title.setText(title);
         textView_time.setText(time);
+        textView_name.setText("Source: "+name);
+        textView_author.setText("  "+author);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();

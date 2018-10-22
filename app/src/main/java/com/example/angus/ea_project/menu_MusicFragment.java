@@ -21,8 +21,8 @@ import android.widget.VideoView;
  */
 public class menu_MusicFragment extends Fragment {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+
+    /*protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_vv);//***************
         myVideoView = (VideoView)this.findViewById(R.id.myVideoView);
@@ -34,5 +34,5 @@ public class menu_MusicFragment extends Fragment {
             @Override
             public void run() {
                 myVideoView.setVideoURI(Uri.parse(urlStream));
-            }
+            }*/
 }
