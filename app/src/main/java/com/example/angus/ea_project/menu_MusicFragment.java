@@ -27,6 +27,18 @@ public class menu_MusicFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        String url = "http://rthk.hk/live2.m3u";
+        Uri path = Uri.parse(url);
+
+        try {
+            mediaPlayer.reset();
+            mediaPlayer.setDataSource(String.valueOf(path));
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mediaPlayer.prepareAsync();
+        } catch (Exception e){
+
+        }
 
     }
 
