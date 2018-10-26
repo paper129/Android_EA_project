@@ -1,6 +1,8 @@
 package com.example.angus.ea_project;
 
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,17 +24,11 @@ import android.widget.VideoView;
 public class menu_MusicFragment extends Fragment {
 
 
-    /*protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_vv);//***************
-        myVideoView = (VideoView)this.findViewById(R.id.myVideoView);
-        MediaController mc;
-        mc = new MediaController(this);
-        myVideoView.setMediaController(mc);
-        urlStream = "http://rthk.hk/live2.m3u";
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                myVideoView.setVideoURI(Uri.parse(urlStream));
-            }*/
+
+
+
+    }
 }
