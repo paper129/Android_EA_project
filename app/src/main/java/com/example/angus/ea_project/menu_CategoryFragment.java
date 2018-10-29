@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class menu_CategoryFragment extends Fragment {
     View view;
-    private String url1="";
+    String[ ] list={"MingPao", "Oncc", "Yahoo","Ettoday","HK01","Headline","RTHK","Thinkhk","LTN"};
 
     public menu_CategoryFragment() {
         // Required empty public constructor
