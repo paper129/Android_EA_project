@@ -25,10 +25,11 @@ public class news_detail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
 
-       Toolbar toolbar =(Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         img_view = (ImageView) findViewById(R.id.imageView);
         textView_description = (TextView)  findViewById(R.id.description);
         textView_title = (TextView) findViewById(R.id.title) ;
@@ -59,6 +60,8 @@ public class news_detail extends AppCompatActivity {
         textView_time.setText(time);
         textView_name.setText("Source: "+name);
         textView_author.setText("  "+author);
+
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();

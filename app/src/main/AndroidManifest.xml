@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".news_detail"></activity>
+        <activity android:name=".news_detail" />
+        <activity android:name=".news_subtopic"></activity>
     </application>
 
 </manifest>
