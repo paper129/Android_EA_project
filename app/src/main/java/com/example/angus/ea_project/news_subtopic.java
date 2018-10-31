@@ -1,14 +1,28 @@
 package com.example.angus.ea_project;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,82 +30,226 @@ import java.util.List;
 import java.util.Map;
 
 public class news_subtopic extends AppCompatActivity {
-    String topic;
-    int position1;
+    int page;
+    int position;
+    String pub;
     private ListView lv;
-    private ProgressDialog pd;
     List<Map<String, Object>> mList;
-    String[ ] item1 ={"All","Business","Entertainment","Health","Science","Sports","Technology"};
-    int image[] ={R.drawable.logo_all,R.drawable.logo_business,R.drawable.logo_entertainment,R.drawable.logo_health,R.drawable.logo_science,R.drawable.logo_sports,R.drawable.logo_technology};
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_subtopic);
-        Toolbar toolbar =(Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    String url="";
+    private ProgressDialog pd;
+    int TOTAL;
 
+
+    private ImageView imageView;
+    ArrayList<List_Item> arrayList;
+
+    String name[],author[],title[],description[],img_url[],time[];
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_news_subtopic);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            Toolbar toolbar =(Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        lv = (ListView)findViewById(R.id.lv);
+        arrayList = new ArrayList<>();
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        topic= bundle.getString("topic");
-        position1=bundle.getInt("position");
-        getSupportActionBar().setTitle(topic);
+        page = bundle.getInt("page");
+        position=bundle.getInt("position");
+        pub = bundle.getString("title");
+        getSupportActionBar().setTitle(pub);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
+        if(page==1)
+        {
+            switch (position)
+            {
+                case 0:
+                    url="https://newsapi.org/v2/everything?domains=mingpao.com&sortBy=publishedAt&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 1:
+                    url="https://newsapi.org/v2/everything?domains=hk.on.cc&sortBy=publishedAt&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 2:
+                    url="https://newsapi.org/v2/everything?domains=yahoo.com&sortBy=publishedAt&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 3:
+                    url="https://newsapi.org/v2/everything?domains=ettoday.net&sortBy=publishedAt&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 4:
+                    url="https://newsapi.org/v2/everything?domains=hk01.com&sortBy=publishedAt&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 5:
+                    url="https://newsapi.org/v2/everything?domains=stheadline.com&sortBy=publishedAt&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 6:
+                    url="https://newsapi.org/v2/everything?domains=rthk.hk&sortBy=publishedAt&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 7:
+                    url="https://newsapi.org/v2/everything?domains=appledaily.com&sortBy=publishedAt&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 8:
+                    url="https://newsapi.org/v2/everything?domains=ntdtv.com&sortBy=publishedAt&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
 
-        lv= (ListView)findViewById(R.id.lv);
-        mList = new ArrayList<Map<String,Object>>();
-        for (int i = 0; i < item1.length; i++) {
-            Map<String, Object> item = new HashMap<String, Object>();
-            item.put("imgView", image[i]); //data in key-value pair
-            item.put("txtView", item1[i]);
-            mList.add(item);
+            }
         }
-        SimpleAdapter adapter = new SimpleAdapter(this, mList, R.layout.list_item2,
-                new String[] { "imgView", "txtView" },
-                new int[] { R.id.imgView ,R.id.txtView });
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(listViewOnItemClick);
+        else
+        {
+            switch (position)
+            {
+                case 0:
+                    url = "https://newsapi.org/v2/top-headlines?country=hk&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 1:
+                    url = "https://newsapi.org/v2/top-headlines?country=hk&category=business&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 2:
+                    url = "https://newsapi.org/v2/top-headlines?country=hk&category=entertainment&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 3:
+                    url = "https://newsapi.org/v2/top-headlines?country=hk&category=health&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 4:
+                    url = "https://newsapi.org/v2/top-headlines?country=hk&category=science&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 5:
+                    url = "https://newsapi.org/v2/top-headlines?country=hk&category=sports&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+                case 6:
+                    url = "https://newsapi.org/v2/top-headlines?country=hk&category=technology&apiKey=307781e9e6ca4234a05abe536b55252d";
+                    break;
+            }
+        }
 
-    }
-    private ListView.OnItemClickListener listViewOnItemClick = new ListView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-            pd = new ProgressDialog(news_subtopic.this);
+            RequestQueue queue = Volley.newRequestQueue(this);
+
+            StringRequest strReq = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+
+                public void onResponse(String response) {
+                    try {
+
+                        //get from data to JSON_OBJECT
+                        JSONObject JSON_oj = new JSONObject(response);
+                        String STATUS = JSON_oj.getString("status");
+
+                        //get from data to JSON_ARRAY
+                        JSONArray articles_array = JSON_oj.getJSONArray("articles");
+                        TOTAL = articles_array.length();
+                        name=new String[TOTAL];
+                        author = new String[TOTAL];
+                        title=new String[TOTAL];
+                        description = new String[TOTAL];
+                        img_url = new String[TOTAL];
+                        time = new String[TOTAL];
+
+
+
+                        for (int i = 0; i < articles_array.length(); i++) {
+                                JSONObject articles_oj = articles_array.getJSONObject(i);
+                            JSONObject Source_oj = articles_oj.getJSONObject("source");
+
+                            description[i] =articles_oj.getString("description");;
+                            title[i] = articles_oj.getString("title");
+                            img_url[i] = articles_oj.getString("urlToImage");
+                            name[i] = Source_oj.getString("name");
+                            author[i] = articles_oj.getString("author");
+                            time[i] = articles_oj.getString("publishedAt");
+                        }
+
+                        for(int i=0;i<TOTAL;i++)
+                        {
+                            if(description[i]=="null")
+                            {
+                                for (int j=i+1;j<TOTAL;j++)
+                                {
+                                    description[i] = description[j];
+                                    title[i] = title[j];
+                                    img_url[i] = img_url[j];
+                                    name[i] = name[j];
+                                    author[i] = author[j];
+                                    time[i]=time[j];
+
+                                    Log.d("INFO",title[i]);
+                                }
+                                TOTAL--;
+                                i--;
+                            }
+                            else
+                            {
+                                int len = img_url[i].length();
+                                if(len != 0) {
+                                    String format = img_url[i].substring(len-3, len);
+                                    if(format.equals("jpg") || format.equals("png")) {
+                                        arrayList.add(new List_Item(img_url[i], title[i]));
+                                    }
+                                    else
+                                    {
+                                        img_url[i]="NO_IMG";
+                                        arrayList.add(new List_Item(img_url[i], title[i]));
+                                    }
+                                }
+                                else
+                                {
+                                    img_url[i]="NO_IMG";
+                                    arrayList.add(new List_Item(img_url[i], title[i]));
+                                }
+
+
+                            }
+                        }
+
+                        pd.dismiss();
+                    } catch (JSONException e) {
+                        Log.d("------------>","ERROR1");
+                        e.printStackTrace();
+                        pd.dismiss();
+
+                    }
+                    CustomListAdapter adapter = new CustomListAdapter(news_subtopic.this,R.layout.list_item1,arrayList);
+                    lv.setAdapter(adapter);
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent = new Intent(news_subtopic.this, news_detail.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("title",title[position]);
+                            bundle.putString("description",description[position]);
+                            bundle.putString("publishedAt",time[position]);
+                            bundle.putString("urlToImage",img_url[position]);
+                            bundle.putString("name",name[position]);
+                            bundle.putString("author",author[position]);
+                            intent.putExtras(bundle);
+                            Log.d("position",Integer.toString(position));
+                            startActivity(intent); // start Intent
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        }
+                    });
+
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    error.printStackTrace();
+                }
+            });
+            pd = new ProgressDialog(this);
             pd.setMessage("Loading..");
             pd.setTitle("Getting Data");
             pd.show();
-            lv.setAdapter(null);
-            String name="";
-            switch (position1) {
-                case 0:
-                    name="Mingpao.com";
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    break;
-                case 8:
-                    break;
+            queue.add(strReq);
 
-            }
-            pd.dismiss();
         }
-    };
+
 }

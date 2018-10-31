@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.os.AsyncTaskCompat;
 import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
@@ -39,13 +40,13 @@ import java.util.List;
 import java.util.Map;
 
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class menu_HotNewsFragment extends Fragment {
     private ListView lv;
     private ProgressDialog pd;
-
     private ImageView imageView;
     ArrayList<List_Item> arrayList;
     List<Map<String, Object>> mList;
@@ -159,6 +160,7 @@ public class menu_HotNewsFragment extends Fragment {
                                 intent.putExtras(bundle);
                                 Log.d("position",Integer.toString(position));
                                 startActivity(intent); // start Intent
+
                             }
                         });
 
@@ -182,6 +184,8 @@ public class menu_HotNewsFragment extends Fragment {
     }
 
 
+
     }
+
 
 
