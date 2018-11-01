@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -177,6 +178,7 @@ public class menu_HotNewsFragment extends Fragment {
         pd.setMessage("Loading..");
         pd.setTitle("Getting Data");
         pd.show();
+        //strReq.setRetryPolicy(new DefaultRetryPolicy(1*100, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(strReq);
 
         return view;

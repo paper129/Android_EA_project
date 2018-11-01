@@ -29,7 +29,7 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 public class menu_MusicFragment extends Fragment {
     SimpleExoPlayerView exoPlayerView;
     SimpleExoPlayer exoPlayer;
-    String url = "https://www.radiantmediaplayer.com/media/bbb-360p.mp4";
+    String url = "http://stm.rthk.hk/radio1";
 
     public View onCreate(LayoutInflater inflater, ViewGroup container,
                          Bundle savedInstanceState) {
