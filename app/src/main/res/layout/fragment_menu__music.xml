@@ -6,22 +6,11 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        android:id="@+id/exo_player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <VideoView
-            android:id="@+id/myVideoView"
-            android:layout_above="@+id/btn_play"
-            android:layout_width="match_parent"
-            android:layout_height="290dp" />
-
-        <ImageButton
-            android:id="@+id/btn_play"
-            android:src="@drawable/button_play"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+    </com.google.android.exoplayer2.ui.SimpleExoPlayerView>
 
 </FrameLayout>
