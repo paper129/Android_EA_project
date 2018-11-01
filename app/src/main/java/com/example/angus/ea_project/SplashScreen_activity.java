@@ -19,7 +19,7 @@ public class SplashScreen_activity extends AppCompatActivity {
                 .withFullScreen()
                 .withTargetActivity(MainActivity.class)
                 .withSplashTimeOut(3000)
-                .withBackgroundColor(Color.parseColor("#9096a0"))
+                .withBackgroundColor(Color.parseColor("#F5F5F5"))
                 .withLogo(R.drawable.launch_logo);
 
 

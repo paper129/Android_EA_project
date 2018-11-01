@@ -24,11 +24,12 @@ public class news_detail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
-
-       Toolbar toolbar =(Toolbar) findViewById(R.id.toolbar);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        Toolbar toolbar =(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         img_view = (ImageView) findViewById(R.id.imageView);
         textView_description = (TextView)  findViewById(R.id.description);
         textView_title = (TextView) findViewById(R.id.title) ;
@@ -59,9 +60,12 @@ public class news_detail extends AppCompatActivity {
         textView_time.setText(time);
         textView_name.setText("Source: "+name);
         textView_author.setText("  "+author);
+
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
     }
