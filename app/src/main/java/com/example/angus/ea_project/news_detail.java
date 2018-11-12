@@ -65,7 +65,9 @@ public class news_detail extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
+                Runtime.getRuntime().gc();
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
             }
         });
     }
