@@ -27,7 +27,7 @@
         <item
             android:id="@+id/Music"
             android:icon="@drawable/icon_music"
-            android:title="Music" />
+            android:title="Radio" />
         </menu>
         </item>
     </group>
