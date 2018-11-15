@@ -9,41 +9,64 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <Button
-        android:id="@+id/play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Play"
-        android:layout_marginStart="88dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/stop"
-        tools:layout_constraintBaseline_creator="1"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent" />
 
-    <Button
-        android:id="@+id/stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="stop"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="187dp"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/play" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="201dp"
-            android:layout_height="134dp"
-            android:text="This music page"
-            android:textSize="20sp"
-            tools:layout_constraintRight_creator="1"
-            tools:layout_constraintBottom_creator="1"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="0dp"
+            android:layout_height="530dp"
+            android:layout_marginTop="56dp"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:layout_constraintLeft_creator="1"
-            android:layout_marginBottom="147dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintTop_creator="1" />
     </android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_marginTop="586dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44A9A9A9"
+        android:layout_gravity="bottom">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="300sp"
+            android:paddingTop="15sp">
+            <Button
+                android:id="@+id/small_button"
+                android:layout_width="36dp"
+                android:layout_height="40dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintTop_creator="1"
+                tools:layout_editor_absoluteX="322dp" />
+        </RelativeLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/small_img"
+            tools:layout_constraintTop_creator="1"
+            tools:layout_constraintLeft_creator="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginStart="16dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/small_text"
+            app:layout_constraintTop_toTopOf="@+id/small_img"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/small_img"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="14dp"
+            tools:layout_constraintLeft_creator="1"
+            app:layout_constraintLeft_toRightOf="@+id/small_img" />
+
+
+        </android.support.constraint.ConstraintLayout>
 </FrameLayout>
