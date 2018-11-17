@@ -2,6 +2,7 @@ package com.example.angus.ea_project;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,18 +12,26 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.test.suitebuilder.TestMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     Fragment frag1;
-
+    private TextView tx2;
+    private  FirebaseAuth firebaseAuth;
+    private  MenuItem menu_log;
+    private boolean btn_logout = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,40 +41,54 @@ public class MainActivity extends AppCompatActivity {
         setNavigationDrawer();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close){
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+
+            }
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+                NavigationView navView = (NavigationView) findViewById(R.id.navigation);
+                Menu menu = navView.getMenu();
+                firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/OldNewspaperTypes.ttf");
+                tx2 = (TextView) findViewById(R.id.header_email);
+                menu_log = (MenuItem)menu.findItem(R.id.Login_item);
+                if(user != null) {
+                    String email = user.getEmail().toString();
+                    tx2.setText(email);
+                    tx2.setTypeface(custom_font);
+                    Log.d("INFO_email", user.getEmail());
+                    menu_log.setTitle("Logout");
+                    btn_logout = true;
+                }
+                else
+                {
+                    tx2.setText("Please login");
+                    tx2.setTypeface(custom_font);
+                    menu_log.setTitle("Login");
+                    btn_logout = false;
+                }
+
+            }
+        };
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
         frag1 = new menu_HotNewsFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, frag1); // replace a Fragment with Frame Layout
         transaction.commit();
-
         getSupportActionBar().setTitle("Hot News");
-    }
-    /*
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate();
-        return true;
-    }
-    public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
-
-        if (id == R.id.swap) {
-            Toast.makeText(MainActivity.this, "Action clicked", Toast.LENGTH_LONG).show();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
-    */
+
     private void setNavigationDrawer() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navView = (NavigationView) findViewById(R.id.navigation);
         final Fragment fragment = null;
         Class fragmentClass;
-
 
         navView.setNavigationItemSelectedListener(new
              NavigationView.OnNavigationItemSelectedListener() {
@@ -122,12 +145,19 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("----------logd","6");
 
                 }
-                else if (positionId == R.id.Login) {
+                else if (positionId == R.id.Login_item) {
+                    if(btn_logout) {
+                        firebaseAuth.signOut();
+                        drawerLayout.closeDrawers();
+                    }
+                    else{
+                        drawerLayout.closeDrawers();
+                        getSupportActionBar().setTitle("Login");
+                        frag2 = new menu_LoginFragment();
+                        Log.d("----------logd", "7");
+                    }
 
-                    drawerLayout.closeDrawers();
-                    getSupportActionBar().setTitle("Setting");
-                    frag2 = new menu_LoginFragment();
-                    Log.d("----------logd","7");
+
 
                 }
 
@@ -150,4 +180,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 }

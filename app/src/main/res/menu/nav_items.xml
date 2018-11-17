@@ -50,7 +50,7 @@
     <item android:title="Account">
         <menu>
             <item
-                android:id="@+id/Login"
+                android:id="@+id/Login_item"
                 android:icon="@drawable/icon_login"
                 android:title="Login" />
         </menu>
