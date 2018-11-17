@@ -19,7 +19,7 @@
             android:textColor="#000"
             android:textSize="36sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/email"
+            app:layout_constraintBottom_toTopOf="@+id/name"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_constraintBottom_creator="1"
@@ -27,12 +27,12 @@
             tools:layout_constraintRight_creator="1" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="228dp"
             android:ems="10"
-            android:hint="Email"
+            android:hint="User Name"
             android:inputType="textWebEmailAddress"
             android:singleLine="true"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -52,8 +52,8 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:selectAllOnFocus="false"
-            app:layout_constraintRight_toRightOf="@+id/email"
-            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintRight_toRightOf="@+id/name"
+            app:layout_constraintTop_toBottomOf="@+id/name"
             tools:layout_constraintRight_creator="1"
             tools:layout_constraintTop_creator="1" />
 
