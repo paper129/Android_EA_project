@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".news_detail" />
-        <activity android:name=".news_subtopic"></activity>
+        <activity android:name=".news_subtopic" />
+        <activity android:name=".RegistrationActivity"></activity>
     </application>
 
 </manifest>

@@ -90,20 +90,28 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("----------logd","2");
 
 
-                } else if (positionId == R.id.News_Map) {
+                } else if (positionId == R.id.Following) {
+
+                    drawerLayout.closeDrawers();
+                    getSupportActionBar().setTitle("Following");
+                    frag2 = new menu_FollowingFragment();
+                    Log.d("----------logd","3");
+
+
+                }else if (positionId == R.id.News_Map) {
 
                     drawerLayout.closeDrawers();
                     getSupportActionBar().setTitle("News Map");
                     frag2 = new menu_NewsMapFragment();
-                    Log.d("----------logd","3");
+                    Log.d("----------logd","4");
 
 
                 } else if (positionId == R.id.Music) {
 
                     drawerLayout.closeDrawers();
-                    getSupportActionBar().setTitle("Music");
+                    getSupportActionBar().setTitle("Live radio");
                     frag2 = new menu_MusicFragment();
-                    Log.d("----------logd","4");
+                    Log.d("----------logd","5");
 
 
                 } else if (positionId == R.id.Setting) {
@@ -111,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.closeDrawers();
                     getSupportActionBar().setTitle("Setting");
                     frag2 = new menu_SettingFragment();
-                    Log.d("----------logd","5");
+                    Log.d("----------logd","6");
 
                 }
                 else if (positionId == R.id.Login) {
@@ -119,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.closeDrawers();
                     getSupportActionBar().setTitle("Setting");
                     frag2 = new menu_LoginFragment();
-                    Log.d("----------logd","6");
+                    Log.d("----------logd","7");
 
                 }
 
