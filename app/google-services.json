@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "910278912658",
+    "firebase_url": "https://login-8eaee.firebaseio.com",
+    "project_id": "login-8eaee",
+    "storage_bucket": "login-8eaee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910278912658:android:ad201103ffe6c99f",
+        "android_client_info": {
+          "package_name": "com.example.angus.ea_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "910278912658-q8fao4kccaj3vpa3helv2743s7hdr74o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeioSKUH4p1Y4QRBUQ9kaZknHF-0kda-o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

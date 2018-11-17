@@ -13,6 +13,10 @@
             android:id="@+id/Category"
             android:icon="@drawable/icon_category"
             android:title="Category" />
+        <item
+            android:id="@+id/Following"
+            android:icon="@drawable/icon_following"
+            android:title="Following" />
         </menu>
         </item>
     </group>
@@ -47,7 +51,7 @@
         <menu>
             <item
                 android:id="@+id/Login"
-                android:icon="@drawable/icon_setting"
+                android:icon="@drawable/icon_login"
                 android:title="Login" />
         </menu>
     </item>

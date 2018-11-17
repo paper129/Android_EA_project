@@ -22,51 +22,41 @@
             tools:layout_constraintRight_creator="1"
             tools:layout_constraintTop_creator="1" />
     </android.support.constraint.ConstraintLayout>
-    <android.support.constraint.ConstraintLayout
-        android:layout_marginTop="586dp"
+    <RelativeLayout
+        android:layout_marginTop="595dp"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#44A9A9A9"
         android:layout_gravity="bottom">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="300sp"
-            android:paddingTop="15sp">
-            <Button
-                android:id="@+id/small_button"
-                android:layout_width="36dp"
-                android:layout_height="40dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_constraintRight_creator="1"
-                tools:layout_constraintTop_creator="1"
-                tools:layout_editor_absoluteX="322dp" />
-        </RelativeLayout>
+
         <ImageView
+            android:id="@+id/small_img"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/small_img"
-            tools:layout_constraintTop_creator="1"
-            tools:layout_constraintLeft_creator="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="11dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginStart="16dp" />
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintTop_creator="1" />
+
         <TextView
+            android:id="@+id/small_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:id="@+id/small_text"
-            app:layout_constraintTop_toTopOf="@+id/small_img"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/small_img"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="14dp"
-            tools:layout_constraintLeft_creator="1"
-            app:layout_constraintLeft_toRightOf="@+id/small_img" />
+            android:layout_marginTop="30sp"
+            android:layout_marginLeft="100sp"/>
+
+        <Button
+            android:id="@+id/small_button"
+            android:layout_width="36dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15sp"
+            android:layout_marginLeft="300sp"
+            android:layout_marginRight="10sp"/>
 
 
-        </android.support.constraint.ConstraintLayout>
+    </RelativeLayout>
 </FrameLayout>
