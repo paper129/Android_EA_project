@@ -19,7 +19,7 @@
             android:textColor="#000"
             android:textSize="36sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/et_Userid"
+            app:layout_constraintBottom_toTopOf="@+id/email"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             tools:layout_constraintBottom_creator="1"
@@ -27,14 +27,14 @@
             tools:layout_constraintRight_creator="1" />
 
         <EditText
-            android:id="@+id/et_Userid"
+            android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="225dp"
+            android:layout_marginTop="228dp"
             android:ems="10"
+            android:hint="Email"
             android:inputType="textWebEmailAddress"
             android:singleLine="true"
-            app:layout_constraintHorizontal_bias="0.69"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,73 +43,45 @@
             tools:layout_constraintTop_creator="1" />
 
         <EditText
-            android:id="@+id/et_Userpw"
+            android:id="@+id/password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="41dp"
             android:autoText="false"
             android:ems="10"
+            android:hint="Password"
             android:inputType="textPassword"
             android:selectAllOnFocus="false"
-            android:singleLine="true"
-            app:layout_constraintRight_toRightOf="@+id/et_Userid"
-            app:layout_constraintTop_toBottomOf="@+id/et_Userid"
+            app:layout_constraintRight_toRightOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/email"
             tools:layout_constraintRight_creator="1"
             tools:layout_constraintTop_creator="1" />
 
         <Button
-            android:id="@+id/btn_Login"
-            android:layout_width="120dp"
+            android:id="@+id/btnLogin"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginTop="42dp"
-            android:background="#FFF"
+            android:background="@drawable/btn_rounded"
             android:onClick="login"
             android:text="Login"
             android:textSize="24sp"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_Userpw"
+            app:layout_constraintTop_toBottomOf="@+id/password"
             tools:layout_constraintLeft_creator="1"
             tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1" />
-
-        <TextView
-            android:id="@+id/tx3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="7dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:freezesText="false"
-            android:text="Password:"
-            android:textColor="#000"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/et_Userpw"
-            app:layout_constraintLeft_toLeftOf="parent"
-            tools:layout_constraintBottom_creator="1"
-            tools:layout_constraintLeft_creator="1" />
-
-        <TextView
-            android:id="@+id/tx2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:freezesText="false"
-            android:text="User ID:"
-            android:textColor="#000"
-            android:textSize="24sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintBottom_creator="1"
-            app:layout_constraintBottom_toBottomOf="@+id/et_Userid" />
+            tools:layout_constraintTop_creator="1"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp" />
 
         <Button
-            android:layout_width="121dp"
+            android:id="@+id/btn_register"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginTop="28dp"
-            android:background="#FFF"
+            android:background="@drawable/btn_rounded"
             android:elevation="0dp"
             android:hapticFeedbackEnabled="false"
             android:text="Register"
@@ -117,10 +89,12 @@
             android:textSize="24sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_Login"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin"
             tools:layout_constraintLeft_creator="1"
             tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1" />
+            tools:layout_constraintTop_creator="1"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp" />
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
