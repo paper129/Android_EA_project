@@ -10,7 +10,7 @@
         android:layout_height="100dp"
         android:background="@drawable/menu_icon1"
         android:layout_marginTop="50sp"
-        android:layout_marginLeft="15sp"/>
+        android:layout_marginLeft="90sp"/>
 
 
 

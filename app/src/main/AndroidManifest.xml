@@ -21,6 +21,7 @@
         <activity android:name=".news_detail" />
         <activity android:name=".news_subtopic" />
         <activity android:name=".RegistrationActivity" />
+        <activity android:name=".Add_Following_Activity"></activity>
     </application>
 
 </manifest>
