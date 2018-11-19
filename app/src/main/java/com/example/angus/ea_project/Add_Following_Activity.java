@@ -36,6 +36,7 @@ public class Add_Following_Activity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Add Topic");
         //setup database
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -49,10 +50,12 @@ public class Add_Following_Activity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserData userData = dataSnapshot.getValue(UserData.class);
                 String selected_data = userData.getFollowing_msg();
+
                 for(int i=0;i<chb.length;i++) {
                     char selected_char = selected_data.charAt(i);
                     if(selected_char=='1'){chb[i].setChecked(true);}
                 }
+
 
             }
 
@@ -68,8 +71,6 @@ public class Add_Following_Activity extends AppCompatActivity {
                 //update data
                 CheckBoxToString();
                 sendUserData();
-                finish();
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 
             }
         });
@@ -79,6 +80,8 @@ public class Add_Following_Activity extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
         UserData userData = new UserData(following_data);
         myRef.setValue(userData);
+        finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
     private void findid(){
         for(int i=0; i<chb_id.length;i++)
@@ -92,6 +95,13 @@ public class Add_Following_Activity extends AppCompatActivity {
         {
             if(chb[i].isChecked()){following_data+=1;}else{following_data+=0;}
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        CheckBoxToString();
+        sendUserData();
     }
 
 

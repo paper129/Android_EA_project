@@ -49,6 +49,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             {
+                                sendUserData();
                                 Toast.makeText(RegistrationActivity.this,"Registration Successful",Toast.LENGTH_SHORT).show();
                                 sendEmailVerification();
                                 finish();
@@ -106,6 +107,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    private void sendUserData(){
+        String following_data = "0000000000000000";
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
+        UserData userData = new UserData(following_data);
+        myRef.setValue(userData);
     }
 
 }
