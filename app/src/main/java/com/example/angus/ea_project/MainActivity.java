@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private  FirebaseAuth firebaseAuth;
     private  MenuItem menu_log;
     private boolean btn_logout = false;
+    private Fragment frag2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 if(user != null) {
                     String email = user.getEmail().toString();
                     tx2.setText(email);
-                    tx2.setTypeface(custom_font);
+                    tx2.setTypeface(null,Typeface.BOLD);
                     Log.d("INFO_email", user.getEmail());
                     menu_log.setTitle("Logout");
                     btn_logout = true;
@@ -89,13 +90,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navView = (NavigationView) findViewById(R.id.navigation);
         final Fragment fragment = null;
         Class fragmentClass;
-
         navView.setNavigationItemSelectedListener(new
              NavigationView.OnNavigationItemSelectedListener() {
 
                 public boolean onNavigationItemSelected(MenuItem menuItem) {
                     int positionId=0;
-                    Fragment frag2 = null;
+                    frag2 = null;
                     positionId = menuItem.getItemId();
 
                 if (positionId == R.id.Hot_News) {
