@@ -5,5 +5,61 @@
     tools:context="com.example.angus.ea_project.menu_SettingFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30sp"
+        android:layout_marginTop="70sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginBottom="30sp"
+        android:background="@drawable/rounded_layout">
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30sp"
+                android:layout_marginTop="80sp"
+                android:text="Font Size"
+                android:id="@+id/txFontSize" />
+
+                <Spinner
+                android:id="@+id/fontSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="230sp"
+                android:layout_marginTop="80sp" />
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30sp"
+                android:layout_marginTop="150sp"
+                android:text="Font Sytle"
+                android:id="@+id/txFontStyle"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="230sp"
+                android:layout_marginTop="150sp">
+            </Spinner>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30sp"
+            android:layout_marginTop="220sp"
+            android:text="Theme"
+            android:id="@+id/txTheme"/>
+        </LinearLayout>
+
+    </RelativeLayout>
 </FrameLayout>
