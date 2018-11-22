@@ -2,6 +2,14 @@ package com.example.angus.ea_project;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -19,10 +28,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.R.attr.bitmap;
 
 
 public class menu_CategoryFragment extends Fragment {
@@ -44,6 +56,15 @@ public class menu_CategoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+        /* for (int i = 0; image1.length < i; i++){
+
+            public Bitmap getResizedBitmap(Bitmap image1[], int bitmapWidth, int bitmapHeight) {
+                return Bitmap.createScaledBitmap(image1[], bitmapWidth, bitmapHeight,
+                        true);
+        } */
+
         view = inflater.inflate(R.layout.fragment_menu__category, container, false);
         lv= (ListView) view.findViewById(R.id.lv);
 
@@ -81,8 +102,13 @@ public class menu_CategoryFragment extends Fragment {
                 R.anim.fade_in);
 
         mList = new ArrayList<Map<String,Object>>();
+        BitmapFactory action_bitmap = new BitmapFactory();
+
         for (int i = 0; i < item1.length; i++) {
             Map<String, Object> item = new HashMap<String, Object>();
+
+
+
             item.put("imgView", image1[i]); //data in key-value pair
             item.put("txtView", item1[i]);
             mList.add(item);
@@ -145,6 +171,6 @@ public class menu_CategoryFragment extends Fragment {
 
         }
     };
+
+
 }
-
-
