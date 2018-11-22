@@ -24,11 +24,13 @@ public class CustomListAdapter extends ArrayAdapter<List_Item>{
     ArrayList<List_Item> Item;
     Context context;
     int resource;
-    public CustomListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<List_Item> Item) {
+    String tx_size;
+    public CustomListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<List_Item> Item,String tx_size) {
         super(context, resource, Item);
         this.Item = Item;
         this.context = context;
         this.resource = resource;
+        this.tx_size = tx_size;
     }
 
     @NonNull
@@ -55,7 +57,9 @@ public class CustomListAdapter extends ArrayAdapter<List_Item>{
         Log.d("------------>",item.getImage());
         TextView textView = (TextView) convertView.findViewById(R.id.txtView);
         textView.setText(item.getTitle());
+        textView.setTextSize(Integer.parseInt(tx_size));
         return convertView;
     }
+
 
 }

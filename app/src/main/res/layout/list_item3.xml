@@ -19,7 +19,7 @@
         android:layout_marginLeft="20sp">
 
         <TextView
-            android:id="@+id/txtView"
+            android:id="@+id/txtView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

@@ -3,6 +3,7 @@ package com.example.angus.ea_project;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -216,7 +217,9 @@ public class news_subtopic extends AppCompatActivity {
                         pd.dismiss();
 
                     }
-                    CustomListAdapter adapter = new CustomListAdapter(news_subtopic.this,R.layout.list_item1,arrayList);
+                    SharedPreferences SystemInfo = getSharedPreferences("data", Context.MODE_PRIVATE);
+                    String data = SystemInfo.getString("font_size", "NULL");
+                    CustomListAdapter adapter = new CustomListAdapter(news_subtopic.this,R.layout.list_item1,arrayList,data);
                     lv.setAdapter(adapter);
                     lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override

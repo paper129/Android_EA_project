@@ -1,6 +1,7 @@
 package com.example.angus.ea_project;
 
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -43,6 +44,8 @@ public class menu_MusicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu__music, container, false);
+        SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        String data = SystemInfo.getString("font_size", "NULL");
         lv = (ListView) view.findViewById(R.id.lv);
         small_img = (ImageView) view.findViewById(R.id.small_img);
         small_text = (TextView) view.findViewById(R.id.small_text);

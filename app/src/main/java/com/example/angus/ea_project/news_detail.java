@@ -1,6 +1,8 @@
 package com.example.angus.ea_project;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,11 +17,8 @@ import com.squareup.picasso.Picasso;
 public class news_detail extends AppCompatActivity {
     String title,description,time,image_url,name,author;
     ImageView img_view;
-    TextView textView_description;
-    TextView textView_title;
-    TextView textView_time;
-    TextView textView_name;
-    TextView textView_author;
+    TextView tx_arr[]= new TextView[5];//textView_title,textView_description,textView_time,textView_name,textView_author
+    int tx_layout[] = {R.id.title,R.id.description,R.id.time,R.id.name,R.id.author};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +29,16 @@ public class news_detail extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        SharedPreferences SystemInfo = getSharedPreferences("data", Context.MODE_PRIVATE);
+        String data = SystemInfo.getString("font_size", "NULL");
+
         img_view = (ImageView) findViewById(R.id.imageView);
-        textView_description = (TextView)  findViewById(R.id.description);
-        textView_title = (TextView) findViewById(R.id.title) ;
-        textView_time = (TextView) findViewById(R.id.time);
-        textView_name = (TextView) findViewById(R.id.name);
-        textView_author = (TextView) findViewById(R.id.author);
+
+        for (int i=0;i<tx_layout.length;i++)
+        {
+            tx_arr[i] = (TextView) findViewById(tx_layout[i]);
+            tx_arr[i].setTextSize(Integer.parseInt(data));
+        }
         Intent it = getIntent();
         Bundle bundle = it.getExtras();
         title = bundle.getString("title");
@@ -55,11 +58,12 @@ public class news_detail extends AppCompatActivity {
         {
             Picasso.with(this).load(image_url).resize(1000, 700).into(img_view);
         }
-        textView_description.setText(description);
-        textView_title.setText(title);
-        textView_time.setText(time);
-        textView_name.setText("Source: "+name);
-        textView_author.setText("  "+author);
+
+        tx_arr[0].setText(title);
+        tx_arr[1].setText(description);
+        tx_arr[2].setText(time);
+        tx_arr[3].setText("Source: "+name);
+        tx_arr[4].setText("  "+author);
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
