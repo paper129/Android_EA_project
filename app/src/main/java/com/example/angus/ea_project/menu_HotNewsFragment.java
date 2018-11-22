@@ -4,12 +4,14 @@ package com.example.angus.ea_project;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.os.AsyncTaskCompat;
 import android.support.v4.widget.CursorAdapter;
+import android.support.v7.view.menu.MenuView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,10 +51,11 @@ public class menu_HotNewsFragment extends Fragment {
     private ListView lv;
     private ProgressDialog pd;
     private ImageView imageView;
-    ArrayList<List_Item> arrayList;
-    List<Map<String, Object>> mList;
-    String name[],author[],title[],description[],img_url[],time[];
-    int TOTAL;
+    private ArrayList<List_Item> arrayList;
+    private List<Map<String, Object>> mList;
+    private String name[],author[],title[],description[],img_url[],time[];
+    private int TOTAL;
+    private TextView txtView;
     public menu_HotNewsFragment() {
         // Required empty public constructor
     }
@@ -60,11 +63,11 @@ public class menu_HotNewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_menu__hot_news, container, false);
+
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         arrayList = new ArrayList<>();
         lv = (ListView) view.findViewById(R.id.lv);
-
-
+        txtView = (TextView) view.findViewById(R.id.txtView);
         String url = "https://newsapi.org/v2/top-headlines?country=hk&apiKey=307781e9e6ca4234a05abe536b55252d";
 
         StringRequest strReq = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -144,8 +147,10 @@ public class menu_HotNewsFragment extends Fragment {
                             e.printStackTrace();
 
                         }
+                        SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+                        String data = SystemInfo.getString("font_size", "NULL");
                         CustomListAdapter adapter = new CustomListAdapter(
-                                getActivity().getApplicationContext(),R.layout.list_item1,arrayList);
+                                getActivity().getApplicationContext(),R.layout.list_item1,arrayList,data);
                         lv.setAdapter(adapter);
                         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,20 +35,22 @@ public class menu_SettingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_menu__setting, container, false);
         SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         String data = SystemInfo.getString("font_size", "NULL");
+        Log.d("System Info",data);
         for (int i=0;i<tx_all.length;i++)
         {
             tx_all[i] =(TextView) view.findViewById(tx_id[i]);
             tx_all[i].setTextSize(Integer.parseInt(data));
         }
+
         sp1 = (Spinner) view.findViewById(R.id.fontSize);
         ArrayAdapter<String> sizeAd = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, font_size);
         sizeAd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp1.setAdapter(sizeAd);
         for(int i=0;i<font_size.length;i++)
         {
-            if(font_size[i]==data)
+            if(font_size[i].equals(data))
             {
-                sp1.setSelection(i);
+                sp1.setSelection(i,true);
                 break;
             }
         }

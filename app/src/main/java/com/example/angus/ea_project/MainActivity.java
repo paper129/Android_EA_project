@@ -28,7 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     Fragment frag1;
-    private TextView tx2;
+    private TextView tx_headerEmail;
     private  FirebaseAuth firebaseAuth;
     private  MenuItem menu_log;
     private boolean btn_logout = false;
@@ -55,20 +55,20 @@ public class MainActivity extends AppCompatActivity {
                 firebaseAuth = FirebaseAuth.getInstance();
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/OldNewspaperTypes.ttf");
-                tx2 = (TextView) findViewById(R.id.header_email);
+                tx_headerEmail = (TextView) findViewById(R.id.header_email);
                 menu_log = (MenuItem)menu.findItem(R.id.Login_item);
                 if(user != null) {
                     String email = user.getEmail().toString();
-                    tx2.setText(email);
-                    tx2.setTypeface(null,Typeface.BOLD);
+                    tx_headerEmail.setText(email);
+                    tx_headerEmail.setTypeface(null,Typeface.BOLD);
                     Log.d("INFO_email", user.getEmail());
                     menu_log.setTitle("Logout");
                     btn_logout = true;
                 }
                 else
                 {
-                    tx2.setText("Please login");
-                    tx2.setTypeface(custom_font);
+                    tx_headerEmail.setText("Please login");
+                    tx_headerEmail.setTypeface(custom_font);
                     menu_log.setTitle("Login");
                     btn_logout = false;
                 }
