@@ -32,7 +32,7 @@ import java.util.Map;
 public class menu_MusicFragment extends Fragment {
 
     private ListView lv;
-    List<Map<String, Object>> mList;
+    private ArrayList<List_Item> arrayList;
     int image[]={R.drawable.rthk_01, R.drawable.rthk_02, R.drawable.rthk_03, R.drawable.rthk_04, R.drawable.rthk_05};
     String list[]={"RTHK01", "RTHK02", "RTHK03", "RTHK04", "RTHK05"};
     ImageView small_img;
@@ -63,17 +63,11 @@ public class menu_MusicFragment extends Fragment {
             btn_play.setBackgroundResource(R.drawable.pause_button);
         }
 
-        mList = new ArrayList<Map<String,Object>>();
+        arrayList = new ArrayList<>();
         for (int i = 0; i < list.length; i++) {
-            Map<String, Object> item = new HashMap<String, Object>();
-            item.put("imgView", image[i]); //data in key-value pair
-            item.put("txtView", list[i]);
-            mList.add(item);
+            arrayList.add(new List_Item(list[i],list[i]));
         }
-        SimpleAdapter adapter = new SimpleAdapter(getActivity().getApplicationContext(), mList,
-                R.layout.list_item3,
-                new String[] { "imgView", "txtView" },
-                new int[] { R.id.imgView ,R.id.txtView });
+        RadioListAdapt adapter = new RadioListAdapt(getActivity().getApplicationContext(),R.layout.list_item3,arrayList,data);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

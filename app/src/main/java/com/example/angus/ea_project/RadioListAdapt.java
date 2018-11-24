@@ -1,0 +1,53 @@
+package com.example.angus.ea_project;
+
+import android.app.Activity;
+import android.content.Context;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Angus on 22/11/2018.
+ */
+
+public class RadioListAdapt extends ArrayAdapter<List_Item> {
+    private ArrayList<List_Item> Item;
+    private Context context;
+    private int resource;
+    private String tx_size;
+    private int image[]={R.drawable.rthk_01, R.drawable.rthk_02, R.drawable.rthk_03, R.drawable.rthk_04, R.drawable.rthk_05};
+
+
+    public RadioListAdapt(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<List_Item> Item, String tx_size) {
+        super(context, resource, Item);
+        this.Item = Item;
+        this.context = context;
+        this.resource = resource;
+        this.tx_size = tx_size;
+    }
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        if(convertView == null)
+        {
+            LayoutInflater layoutInflater = (LayoutInflater) getContext().getApplicationContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            convertView = layoutInflater.inflate(R.layout.list_item3,null,true);
+        }
+
+        List_Item item = getItem(position); // Object
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.imgView3);
+        imageView.setImageResource(image[position]);
+        TextView textView = (TextView) convertView.findViewById(R.id.txtView3);
+        textView.setText(item.getTitle());
+        textView.setTextSize(Integer.parseInt(tx_size));
+        return convertView;
+    }
+}

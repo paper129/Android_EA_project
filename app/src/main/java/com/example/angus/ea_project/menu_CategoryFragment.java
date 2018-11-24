@@ -1,7 +1,9 @@
 package com.example.angus.ea_project;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -42,7 +44,7 @@ public class menu_CategoryFragment extends Fragment {
     private ListView lv;
     Button toolBarBtn;
     boolean swap = false;
-    List<Map<String, Object>> mList;
+    private ArrayList<List_Item> arrayList;
 
     String[ ] item1 ={"MingPao", "Oncc", "Yahoo","Ettoday","HK01","Headline","RTHK","Thinkhk","LTN"};
     int image1[] ={R.drawable.logo_mingpao, R.drawable.logo_oncc, R.drawable.logo_yahoo, R.drawable.logo_ettoday, R.drawable.logo_hk01, R.drawable.logo_headline, R.drawable.logo_rthk, R.drawable.logo_thinkhk, R.drawable.logo_ltn};
@@ -101,23 +103,14 @@ public class menu_CategoryFragment extends Fragment {
         Animation myAnimation1 = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
                 R.anim.fade_in);
 
-        mList = new ArrayList<Map<String,Object>>();
-        BitmapFactory action_bitmap = new BitmapFactory();
-
+        arrayList = new ArrayList<>();
         for (int i = 0; i < item1.length; i++) {
-            Map<String, Object> item = new HashMap<String, Object>();
-
-
-
-            item.put("imgView", image1[i]); //data in key-value pair
-            item.put("txtView", item1[i]);
-            mList.add(item);
+            arrayList.add(new List_Item(item1[i],item1[i]));
         }
-        SimpleAdapter adapter = new SimpleAdapter(getActivity().getApplicationContext(), mList, R.layout.list_item2,
-                new String[] { "imgView", "txtView" },
-                new int[] { R.id.imgView ,R.id.txtView });
-
-        lv.setAdapter(adapter);
+        SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        String data = SystemInfo.getString("font_size", "NULL");
+        CategoryListAdapt adapter1 = new CategoryListAdapt(getActivity().getApplicationContext(),R.layout.list_item2,arrayList,data,1);
+        lv.setAdapter(adapter1);
         lv.startAnimation(myAnimation1);
         lv.setOnItemClickListener(listViewOnItemClick1);
     }
@@ -125,17 +118,14 @@ public class menu_CategoryFragment extends Fragment {
     {   Animation myAnimation2 = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),
             R.anim.fade_in);
 
-        mList = new ArrayList<Map<String,Object>>();
+        arrayList = new ArrayList<>();
         for (int i = 0; i < item2.length; i++) {
-            Map<String, Object> item = new HashMap<String, Object>();
-            item.put("imgView", image2[i]); //data in key-value pair
-            item.put("txtView", item2[i]);
-            mList.add(item);
+            arrayList.add(new List_Item(item2[i],item2[i]));
         }
-        SimpleAdapter adapter = new SimpleAdapter(getActivity().getApplicationContext(), mList, R.layout.list_item2,
-                new String[] { "imgView", "txtView" },
-                new int[] { R.id.imgView ,R.id.txtView });
-        lv.setAdapter(adapter);
+        SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        String data = SystemInfo.getString("font_size", "NULL");
+        CategoryListAdapt adapter2 = new CategoryListAdapt(getActivity().getApplicationContext(),R.layout.list_item2,arrayList,data,2);
+        lv.setAdapter(adapter2);
         lv.startAnimation(myAnimation2);
         lv.setOnItemClickListener(listViewOnItemClick2);
 
