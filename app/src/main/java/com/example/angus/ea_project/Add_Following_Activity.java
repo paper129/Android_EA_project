@@ -95,7 +95,7 @@ public class Add_Following_Activity extends AppCompatActivity {
     }
     private void findid(){
         SharedPreferences SystemInfo = getSharedPreferences("data", Context.MODE_PRIVATE);
-        String data = SystemInfo.getString("font_size", "NULL");
+        String data = SystemInfo.getString("font_size", "22");
         for(int i=0; i<chb_id.length;i++)
         {
             chb[i]=(CheckBox) findViewById(chb_id[i]);

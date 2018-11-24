@@ -45,7 +45,7 @@ public class menu_MusicFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu__music, container, false);
         SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
-        String data = SystemInfo.getString("font_size", "NULL");
+        String data = SystemInfo.getString("font_size", "22");
         lv = (ListView) view.findViewById(R.id.lv);
         small_img = (ImageView) view.findViewById(R.id.small_img);
         small_text = (TextView) view.findViewById(R.id.small_text);

@@ -108,7 +108,7 @@ public class menu_CategoryFragment extends Fragment {
             arrayList.add(new List_Item(item1[i],item1[i]));
         }
         SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
-        String data = SystemInfo.getString("font_size", "NULL");
+        String data = SystemInfo.getString("font_size", "22");
         CategoryListAdapt adapter1 = new CategoryListAdapt(getActivity().getApplicationContext(),R.layout.list_item2,arrayList,data,1);
         lv.setAdapter(adapter1);
         lv.startAnimation(myAnimation1);
