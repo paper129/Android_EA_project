@@ -30,7 +30,7 @@ public class news_detail extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         SharedPreferences SystemInfo = getSharedPreferences("data", Context.MODE_PRIVATE);
-        String data = SystemInfo.getString("font_size", "NULL");
+        String data = SystemInfo.getString("font_size", "22");
 
         img_view = (ImageView) findViewById(R.id.imageView);
 

@@ -32,6 +32,7 @@
             android:text="Topic"/>
         <CheckBox
             android:id="@+id/chb1"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
@@ -40,6 +41,7 @@
 
         <CheckBox
             android:id="@+id/chb2"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
@@ -48,6 +50,7 @@
 
         <CheckBox
             android:id="@+id/chb3"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
@@ -56,6 +59,7 @@
 
         <CheckBox
             android:id="@+id/chb4"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
@@ -64,6 +68,7 @@
 
         <CheckBox
             android:id="@+id/chb5"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
@@ -72,6 +77,7 @@
 
         <CheckBox
             android:id="@+id/chb6"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
@@ -80,6 +86,7 @@
 
         <CheckBox
             android:id="@+id/chb7"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
@@ -88,6 +95,7 @@
 
         <CheckBox
             android:id="@+id/chb8"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
@@ -96,6 +104,7 @@
 
         <CheckBox
             android:id="@+id/chb9"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
@@ -104,6 +113,7 @@
 
         <CheckBox
             android:id="@+id/chb10"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="190sp"
@@ -111,6 +121,7 @@
             android:text="All" />
         <CheckBox
             android:id="@+id/chb11"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Business"
@@ -118,6 +129,7 @@
             android:layout_marginTop="100sp"/>
         <CheckBox
             android:id="@+id/chb12"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enterainment"
@@ -125,6 +137,7 @@
             android:layout_marginTop="140sp"/>
         <CheckBox
             android:id="@+id/chb13"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Health"
@@ -132,6 +145,7 @@
             android:layout_marginTop="180sp"/>
         <CheckBox
             android:id="@+id/chb14"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Science"
@@ -139,6 +153,7 @@
             android:layout_marginTop="220sp"/>
         <CheckBox
             android:id="@+id/chb15"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sports"
@@ -146,6 +161,7 @@
             android:layout_marginTop="260sp"/>
         <CheckBox
             android:id="@+id/chb16"
+            android:singleLine="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Technology"

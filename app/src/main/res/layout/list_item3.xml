@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imgView"
+        android:id="@+id/imgView3"
         android:layout_marginLeft="40sp"
         android:layout_marginTop="10sp"
         android:layout_width="70sp"

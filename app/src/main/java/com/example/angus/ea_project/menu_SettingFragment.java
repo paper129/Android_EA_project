@@ -34,7 +34,7 @@ public class menu_SettingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu__setting, container, false);
         SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
-        String data = SystemInfo.getString("font_size", "NULL");
+        String data = SystemInfo.getString("font_size", "22");
         Log.d("System Info",data);
         for (int i=0;i<tx_all.length;i++)
         {

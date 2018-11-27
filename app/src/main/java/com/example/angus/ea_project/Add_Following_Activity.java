@@ -1,6 +1,10 @@
 package com.example.angus.ea_project;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -80,14 +84,25 @@ public class Add_Following_Activity extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
         UserData userData = new UserData(following_data);
         myRef.setValue(userData);
+        Fragment frag2;
+        frag2 = new menu_HotNewsFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame, frag2); // replace a Fragment with Frame Layout
+        getSupportActionBar().setTitle("Hot News");
+        transaction.commit();
         finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
     private void findid(){
+        SharedPreferences SystemInfo = getSharedPreferences("data", Context.MODE_PRIVATE);
+        String data = SystemInfo.getString("font_size", "22");
         for(int i=0; i<chb_id.length;i++)
         {
             chb[i]=(CheckBox) findViewById(chb_id[i]);
+            chb[i].setTextSize(Integer.parseInt(data));
         }
+
+
     }
 
     private void CheckBoxToString(){
@@ -103,6 +118,5 @@ public class Add_Following_Activity extends AppCompatActivity {
         CheckBoxToString();
         sendUserData();
     }
-
 
 }
