@@ -49,6 +49,7 @@ public class menu_FollowingFragment extends Fragment {
     private ListView lv;
     private int[] intent_pos = new int[16];
     private int pos_pointer=0;
+    private  boolean pause = false;
     public menu_FollowingFragment() {
         // Required empty public constructor
     }
@@ -66,51 +67,7 @@ public class menu_FollowingFragment extends Fragment {
         tx1 = (TextView) view.findViewById(R.id.tx1);
         lv= (ListView) view.findViewById(R.id.lv);
         if(user != null) {
-            DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    UserData userData = dataSnapshot.getValue(UserData.class);
-                    selected_data = userData.getFollowing_msg();
-                    mList = new ArrayList<Map<String,Object>>();
-                    for (int i = 0; i < item1.length; i++) {
-                        Log.d("System Info",selected_data);
-                        char selected_char = selected_data.charAt(i);
-                        if(selected_char == '1') {
-                            Map<String, Object> item = new HashMap<String, Object>();
-                            item.put("imgView", image1[i]); //data in key-value pair
-                            item.put("txtView", item1[i]);
-                            mList.add(item);
-                            intent_pos[pos_pointer] = i;
-                            pos_pointer++;
-                        }
-                    }
-                    if(pos_pointer == 0)
-                    {
-                        img.setVisibility(View.VISIBLE);
-                        tx1.setVisibility(View.VISIBLE);
-                    }
-                    else
-                    {
-                        img.setVisibility(View.GONE);
-                        tx1.setVisibility(View.GONE);
-                    }
-                    SimpleAdapter adapter = new SimpleAdapter(getActivity().getApplicationContext(), mList, R.layout.list_item2,
-                            new String[] { "imgView", "txtView" },
-                            new int[] { R.id.imgView ,R.id.txtView });
-
-                    lv.setAdapter(adapter);
-                    lv.setOnItemClickListener(listViewOnItemClick1);
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(getActivity(), databaseError.getCode(), Toast.LENGTH_SHORT).show();
-                }
-
-            });
-
-
-
+            genList();
         }
         else
         {
@@ -160,6 +117,66 @@ public class menu_FollowingFragment extends Fragment {
 
         }
     };
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(pause)
+        {
+            pause = true;
+            genList();
+        }
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        pause = true;
+    }
+    private void genList()
+    {
+        DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserData userData = dataSnapshot.getValue(UserData.class);
+                selected_data = userData.getFollowing_msg();
+                mList = new ArrayList<Map<String,Object>>();
+                for (int i = 0; i < item1.length; i++) {
+                    Log.d("System Info",selected_data);
+                    char selected_char = selected_data.charAt(i);
+                    if(selected_char == '1') {
+                        Map<String, Object> item = new HashMap<String, Object>();
+                        item.put("imgView", image1[i]); //data in key-value pair
+                        item.put("txtView", item1[i]);
+                        mList.add(item);
+                        intent_pos[pos_pointer] = i;
+                        pos_pointer++;
+                    }
+                }
+                if(pos_pointer == 0)
+                {
+                    img.setVisibility(View.VISIBLE);
+                    tx1.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    img.setVisibility(View.GONE);
+                    tx1.setVisibility(View.GONE);
+                }
+                SimpleAdapter adapter = new SimpleAdapter(getActivity().getApplicationContext(), mList, R.layout.list_item2,
+                        new String[] { "imgView", "txtView" },
+                        new int[] { R.id.imgView ,R.id.txtView });
+
+                lv.setAdapter(adapter);
+                lv.setOnItemClickListener(listViewOnItemClick1);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getActivity(), databaseError.getCode(), Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+    }
 
 
 
