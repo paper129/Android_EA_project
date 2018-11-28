@@ -78,7 +78,7 @@ public class menu_HotNewsFragment extends Fragment {
                             //get from data to JSON_OBJECT
                             JSONObject JSON_oj = new JSONObject(response);
                             String STATUS = JSON_oj.getString("status");
-                            TOTAL = JSON_oj.getInt("totalResults");
+                            TOTAL = 20;
                             //get from data to JSON_ARRAY
                             JSONArray articles_array = JSON_oj.getJSONArray("articles");
 
@@ -143,6 +143,7 @@ public class menu_HotNewsFragment extends Fragment {
 
                                 pd.dismiss();
                         } catch (JSONException e) {
+                            pd.dismiss();
                             Log.d("------------>","ERROR1");
                             e.printStackTrace();
 
