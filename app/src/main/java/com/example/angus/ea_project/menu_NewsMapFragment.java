@@ -36,7 +36,7 @@ public class menu_NewsMapFragment extends Fragment {
     private String provider;
     private Criteria criteria;
     private LocationListener locationListener;
-    private TextView txtcountry ;
+    private TextView txtcountry;
 
 
     public menu_NewsMapFragment() {
@@ -67,9 +67,10 @@ public class menu_NewsMapFragment extends Fragment {
         final Location location = locationManager.getLastKnownLocation(provider);
         locationListener = new LocationListener() {
             String status;
+
             @Override
             public void onLocationChanged(Location location) {
-                Log.d("Info System:",String.valueOf(location.getLatitude())+ String.valueOf(location.getLongitude()));
+                Log.d("Info System:", String.valueOf(location.getLatitude()) + String.valueOf(location.getLongitude()));
 
             }
 
@@ -77,67 +78,82 @@ public class menu_NewsMapFragment extends Fragment {
             public void onStatusChanged(String s, int i, Bundle bundle) {
 
                 //Toast.makeText(MainActivity.this, provider + "'s status changed to "+ status +"!",
-                        //Toast.LENGTH_SHORT).show();
+                //Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onProviderEnabled(String s) {
                 //Toast.makeText(MainActivity.this, "Provider " + provider + " enabled!",
-                        //Toast.LENGTH_SHORT).show();
+                //Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onProviderDisabled(String s) {
                 //Toast.makeText(MainActivity.this, "Provider " + provider + " disabled!",
-                        //Toast.LENGTH_SHORT).show();
+                //Toast.LENGTH_SHORT).show();
 
             }
         };
 
 
+        try {
+            double latitude = 0;
+            latitude = location.getLatitude();
+            double longitude = 0;
+            longitude = location.getLongitude();
+            String log = "Latitude : " + latitude + "  " + "Longtitude: " + longitude;
+            Log.d("GPS Log String: ", String.valueOf(log));
+
+            if (latitude != 0 && longitude != 0) {  //Fetch user location from GPS
+                addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                Log.d("GeoCoder Fetch OK", String.valueOf(1));
+            } else {  //If failed, set GPS LongLat to Hong Kong (22.3964N, 114.1095E)
+                latitude = 22.3964;
+                longitude = 114.1095;
+                addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            }
 
 
+            String address = addresses.get(0).getAddressLine(0);
+            String area = addresses.get(0).getLocality();
+            String city = addresses.get(0).getAdminArea();
+            String country = addresses.get(0).getCountryName();
 
+            //txtcountry.setText("Country: " + country);
 
-                try {
-                    double latitude =  location.getLatitude();
-                    double longitude =  location.getLongitude();
-                    String log = "Latitude : " + latitude + "  " + "Longtitude: " + longitude;
-                    Log.d("GPS Log String: ",String.valueOf(log));
+            Log.d("System Info:", "long " + location.getLongitude() + "\n" + "lat " + location.getLatitude() + "\n" + "country: " + country);
 
-                    if(latitude != 0 && longitude != 0){  //Fetch user location from GPS
-                        addresses = geocoder.getFromLocation(latitude, longitude, 1);
-                        Log.d("GeoCoder Fetch OK", String.valueOf(1));
-                    }
-                    else {  //If failed, set GPS LongLat to Hong Kong (22.3964N, 114.1095E)
-                        latitude = 22.3964;
-                        longitude = 114.1095;
-                        addresses = geocoder.getFromLocation(latitude, longitude, 1);
-                    }
+            String blank = ""; //for attach in log.d
 
+            String[] isoCountryCodes = Locale.getISOCountries();
+            String countryCode = "";
+            String countryName = country;
+            // Iterate through all country codes:
 
-                    String address = addresses.get(0).getAddressLine(0);
-                    String area = addresses.get(0).getLocality();
-                    String city = addresses.get(0).getAdminArea();
-                    String country = addresses.get(0).getCountryName();
+            for (String code : isoCountryCodes) {
+                // Create a locale using each country code
+                Locale locale = new Locale("", code);
+                // Get country name for each code.
+                String name = locale.getDisplayCountry();
 
-                    //txtcountry.setText("Country: " + country);
-
-                    Log.d("System Info:","long " + location.getLongitude() +"\n"+ "lat " + location.getLatitude() + "\n" + "country: " + country);
-
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (name.equals(countryName)) {
+                    countryCode = code;
+                    Log.d("Country Code Info: ", blank);
+                    Log.d("Country: ", countryName);
+                    Log.d("Country Code: ", countryCode);
+                    break;
                 }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
 
 
-
-
+            return view;
+        }
 
 
         return view;
     }
-
 }
