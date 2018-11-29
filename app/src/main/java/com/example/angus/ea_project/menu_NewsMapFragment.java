@@ -101,8 +101,10 @@ public class menu_NewsMapFragment extends Fragment {
 
 
                 try {
-                    double latitude =  location.getLatitude();
-                    double longitude =  location.getLongitude();
+                    double latitude = 0;
+                    latitude = location.getLatitude();
+                    double longitude = 0;
+                    longitude = location.getLongitude();
                     String log = "Latitude : " + latitude + "  " + "Longtitude: " + longitude;
                     Log.d("GPS Log String: ",String.valueOf(log));
 
@@ -126,9 +128,33 @@ public class menu_NewsMapFragment extends Fragment {
 
                     Log.d("System Info:","long " + location.getLongitude() +"\n"+ "lat " + location.getLatitude() + "\n" + "country: " + country);
 
+                    String blank = ""; //for attach in log.d
+
+                    String[] isoCountryCodes = Locale.getISOCountries();
+                    String countryCode = "";
+                    String countryName = country;
+                    // Iterate through all country codes:
+
+                    for (String code : isoCountryCodes) {
+                        // Create a locale using each country code
+                        Locale locale = new Locale("", code);
+                        // Get country name for each code.
+                        String name = locale.getDisplayCountry();
+
+                        if (name.equals(countryName)) {
+                            countryCode = code;
+                            Log.d("Country Code Info: ", blank);
+                            Log.d("Country: ", countryName);
+                            Log.d("Country Code: ", countryCode);
+                            break;
+                        }
+                    }
 
 
-                } catch (IOException e) {
+
+
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -137,7 +163,9 @@ public class menu_NewsMapFragment extends Fragment {
 
 
 
+
         return view;
     }
+
 
 }
