@@ -84,9 +84,9 @@ public class Add_Following_Activity extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
         UserData userData = new UserData(following_data);
         myRef.setValue(userData);
-
         finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
     }
     private void findid(){
         SharedPreferences SystemInfo = getSharedPreferences("data", Context.MODE_PRIVATE);
