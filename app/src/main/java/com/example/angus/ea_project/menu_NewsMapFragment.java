@@ -37,6 +37,7 @@ public class menu_NewsMapFragment extends Fragment {
     private Criteria criteria;
     private LocationListener locationListener;
     private TextView txtcountry;
+    String blank = ""; //for attach in log.d, useless in program.
 
 
     public menu_NewsMapFragment() {
@@ -49,7 +50,7 @@ public class menu_NewsMapFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu__news_map, container, false);
-        //txtCountry = (TextView) findViewById(R.id.txtCountry);
+        txtcountry = (TextView) view.findViewById(R.id.country);
 
         geocoder = new Geocoder(getActivity(), Locale.getDefault());
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -58,7 +59,7 @@ public class menu_NewsMapFragment extends Fragment {
         criteria.setAccuracy(Criteria.ACCURACY_COARSE);
         criteria.setCostAllowed(false);
         provider = locationManager.getBestProvider(criteria, false);
-        //txtcountry = (TextView) getView().findViewById(R.id.country);
+
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -105,43 +106,53 @@ public class menu_NewsMapFragment extends Fragment {
             String log = "Latitude : " + latitude + "  " + "Longtitude: " + longitude;
             Log.d("GPS Log String: ", String.valueOf(log));
 
-            if (latitude != 0 && longitude != 0) {  //Fetch user location from GPS
+            if (latitude != 0 && longitude != 0) {
+                //Fetch user location from GPS
                 addresses = geocoder.getFromLocation(latitude, longitude, 1);
-                Log.d("GeoCoder Fetch OK", String.valueOf(1));
-            } else {  //If failed, set GPS LongLat to Hong Kong (22.3964N, 114.1095E)
+            } else {
+                //If failed, set GPS LongLat to Hong Kong (22.3964N, 114.1095E)
                 latitude = 22.3964;
                 longitude = 114.1095;
                 addresses = geocoder.getFromLocation(latitude, longitude, 1);
             }
 
+            // The below string is used to get different details from the Geocoder API.
 
-            String address = addresses.get(0).getAddressLine(0);
-            String area = addresses.get(0).getLocality();
-            String city = addresses.get(0).getAdminArea();
+            // String address = addresses.get(0).getAddressLine(0);
+            // String area = addresses.get(0).getLocality();
+            // String city = addresses.get(0).getAdminArea();
             String country = addresses.get(0).getCountryName();
 
-            //txtcountry.setText("Country: " + country);
 
             Log.d("System Info:", "long " + location.getLongitude() + "\n" + "lat " + location.getLatitude() + "\n" + "country: " + country);
 
-            String blank = ""; //for attach in log.d
 
-            String[] isoCountryCodes = Locale.getISOCountries();
+
+            String[] isoCountryCodes = Locale.getISOCountries(); //Get all countries with country code.
             String countryCode = "";
             String countryName = country;
-            // Iterate through all country codes:
+
 
             for (String code : isoCountryCodes) {
+                // To iterate through all country codes, we use for-loop
+                // This for-loop is to fetch all country and country codes from Locale API.
                 // Create a locale using each country code
                 Locale locale = new Locale("", code);
                 // Get country name for each code.
                 String name = locale.getDisplayCountry();
 
                 if (name.equals(countryName)) {
+                    // if-statement: to compare Locale API and GeoCoder country name match or not.
+                    // If there is same country name, fetch the country code and save to local variable countryCode.
                     countryCode = code;
-                    Log.d("Country Code Info: ", blank);
-                    Log.d("Country: ", countryName);
-                    Log.d("Country Code: ", countryCode);
+
+                    //Log Country Code Information
+                    Log.d("Country Code Info ", blank);
+                    Log.d("Country ", countryName);
+                    Log.d("Country Code ", countryCode);
+
+                    //Set the textview in news map fragment to display country code
+                    txtcountry.setText("Country Code : \n" + countryCode);
                     break;
                 }
             }
