@@ -218,8 +218,9 @@ public class news_subtopic extends AppCompatActivity {
 
                     }
                     SharedPreferences SystemInfo = getSharedPreferences("data", Context.MODE_PRIVATE);
-                    String data = SystemInfo.getString("font_size", "22");
-                    CustomListAdapter adapter = new CustomListAdapter(news_subtopic.this,R.layout.list_item1,arrayList,data);
+                    String data1 = SystemInfo.getString("font_size", "22");
+                    String data2 = SystemInfo.getString("font_Style","font1");
+                    CustomListAdapter adapter = new CustomListAdapter(news_subtopic.this,R.layout.list_item1,arrayList,data1,data2);
                     lv.setAdapter(adapter);
                     lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override

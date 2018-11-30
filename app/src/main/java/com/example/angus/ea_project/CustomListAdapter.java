@@ -2,6 +2,7 @@ package com.example.angus.ea_project;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,12 +26,14 @@ public class CustomListAdapter extends ArrayAdapter<List_Item>{
     Context context;
     int resource;
     String tx_size;
-    public CustomListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<List_Item> Item,String tx_size) {
+    String tx_style;
+    public CustomListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<List_Item> Item,String tx_size,String tx_style) {
         super(context, resource, Item);
         this.Item = Item;
         this.context = context;
         this.resource = resource;
         this.tx_size = tx_size;
+        this.tx_style= tx_style;
     }
 
     @NonNull
@@ -58,6 +61,8 @@ public class CustomListAdapter extends ArrayAdapter<List_Item>{
         TextView textView = (TextView) convertView.findViewById(R.id.txtView);
         textView.setText(item.getTitle());
         textView.setTextSize(Integer.parseInt(tx_size));
+        Typeface custom_font = Typeface.createFromAsset(getContext().getAssets(), "fonts/"+tx_style+".ttf");
+        textView.setTypeface(custom_font);
         return convertView;
     }
 

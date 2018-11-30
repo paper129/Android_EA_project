@@ -2,6 +2,7 @@ package com.example.angus.ea_project;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,16 +23,17 @@ public class RadioListAdapt extends ArrayAdapter<List_Item> {
     private ArrayList<List_Item> Item;
     private Context context;
     private int resource;
-    private String tx_size;
+    private String tx_size,tx_style;
     private int image[]={R.drawable.rthk_01, R.drawable.rthk_02, R.drawable.rthk_03, R.drawable.rthk_04, R.drawable.rthk_05};
 
 
-    public RadioListAdapt(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<List_Item> Item, String tx_size) {
+    public RadioListAdapt(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<List_Item> Item, String tx_size,String tx_style) {
         super(context, resource, Item);
         this.Item = Item;
         this.context = context;
         this.resource = resource;
         this.tx_size = tx_size;
+        this.tx_style = tx_style;
     }
     @NonNull
     @Override
@@ -48,6 +50,8 @@ public class RadioListAdapt extends ArrayAdapter<List_Item> {
         TextView textView = (TextView) convertView.findViewById(R.id.txtView3);
         textView.setText(item.getTitle());
         textView.setTextSize(Integer.parseInt(tx_size));
+        Typeface custom_font = Typeface.createFromAsset(getContext().getAssets(), "fonts/"+tx_style+".ttf");
+        textView.setTypeface(custom_font);
         return convertView;
     }
 }

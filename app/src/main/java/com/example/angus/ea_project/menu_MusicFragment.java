@@ -45,7 +45,8 @@ public class menu_MusicFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu__music, container, false);
         SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
-        String data = SystemInfo.getString("font_size", "22");
+        String data1 = SystemInfo.getString("font_size", "22");
+        String data2 = SystemInfo.getString("font_Style","font1");
         lv = (ListView) view.findViewById(R.id.lv);
         small_img = (ImageView) view.findViewById(R.id.small_img);
         small_text = (TextView) view.findViewById(R.id.small_text);
@@ -67,7 +68,7 @@ public class menu_MusicFragment extends Fragment {
         for (int i = 0; i < list.length; i++) {
             arrayList.add(new List_Item(list[i],list[i]));
         }
-        RadioListAdapt adapter = new RadioListAdapt(getActivity().getApplicationContext(),R.layout.list_item3,arrayList,data);
+        RadioListAdapt adapter = new RadioListAdapt(getActivity().getApplicationContext(),R.layout.list_item3,arrayList,data1,data2);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

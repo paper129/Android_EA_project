@@ -108,8 +108,9 @@ public class menu_CategoryFragment extends Fragment {
             arrayList.add(new List_Item(item1[i],item1[i]));
         }
         SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
-        String data = SystemInfo.getString("font_size", "22");
-        CategoryListAdapt adapter1 = new CategoryListAdapt(getActivity().getApplicationContext(),R.layout.list_item2,arrayList,data,1);
+        String data1 = SystemInfo.getString("font_size", "22");
+        String data2 = SystemInfo.getString("font_Style","font1");
+        CategoryListAdapt adapter1 = new CategoryListAdapt(getActivity().getApplicationContext(),R.layout.list_item2,arrayList,data1,data2,1);
         lv.setAdapter(adapter1);
         lv.startAnimation(myAnimation1);
         lv.setOnItemClickListener(listViewOnItemClick1);
@@ -123,8 +124,9 @@ public class menu_CategoryFragment extends Fragment {
             arrayList.add(new List_Item(item2[i],item2[i]));
         }
         SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
-        String data = SystemInfo.getString("font_size", "NULL");
-        CategoryListAdapt adapter2 = new CategoryListAdapt(getActivity().getApplicationContext(),R.layout.list_item2,arrayList,data,2);
+        String data1 = SystemInfo.getString("font_size", "22");
+        String data2 = SystemInfo.getString("font_Style","font1");
+        CategoryListAdapt adapter2 = new CategoryListAdapt(getActivity().getApplicationContext(),R.layout.list_item2,arrayList,data1,data2,2);
         lv.setAdapter(adapter2);
         lv.startAnimation(myAnimation2);
         lv.setOnItemClickListener(listViewOnItemClick2);

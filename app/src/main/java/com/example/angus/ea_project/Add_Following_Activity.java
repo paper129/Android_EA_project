@@ -90,11 +90,14 @@ public class Add_Following_Activity extends AppCompatActivity {
     }
     private void findid(){
         SharedPreferences SystemInfo = getSharedPreferences("data", Context.MODE_PRIVATE);
-        String data = SystemInfo.getString("font_size", "22");
+        String data1 = SystemInfo.getString("font_size", "22");
+        String data2 = SystemInfo.getString("font_Style","font1");
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/"+data2+".ttf");
         for(int i=0; i<chb_id.length;i++)
         {
             chb[i]=(CheckBox) findViewById(chb_id[i]);
-            chb[i].setTextSize(Integer.parseInt(data));
+            chb[i].setTextSize(Integer.parseInt(data1));
+            chb[i].setTypeface(custom_font);
         }
 
 

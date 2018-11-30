@@ -2,6 +2,7 @@ package com.example.angus.ea_project;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,16 +23,17 @@ public class CategoryListAdapt extends ArrayAdapter<List_Item> {
     private ArrayList<List_Item> Item;
     private Context context;
     private int resource;
-    private String tx_size;
+    private String tx_size , tx_style;
     private int page;
     int image1[] ={R.drawable.logo_mingpao, R.drawable.logo_oncc, R.drawable.logo_yahoo, R.drawable.logo_ettoday, R.drawable.logo_hk01, R.drawable.logo_headline, R.drawable.logo_rthk, R.drawable.logo_thinkhk, R.drawable.logo_ltn};
     int image2[] ={R.drawable.logo_all,R.drawable.logo_business,R.drawable.logo_entertainment,R.drawable.logo_health,R.drawable.logo_science,R.drawable.logo_sports,R.drawable.logo_technology};
-    public CategoryListAdapt(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<List_Item> Item, String tx_size,int page) {
+    public CategoryListAdapt(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<List_Item> Item, String tx_size,String tx_style,int page) {
         super(context, resource, Item);
         this.Item = Item;
         this.context = context;
         this.resource = resource;
         this.tx_size = tx_size;
+        this.tx_style = tx_style;
         this.page = page;
     }
     @NonNull
@@ -48,6 +50,9 @@ public class CategoryListAdapt extends ArrayAdapter<List_Item> {
             TextView textView = (TextView) convertView.findViewById(R.id.txtView3);
             textView.setText(item.getTitle());
             textView.setTextSize(Integer.parseInt(tx_size));
+            Typeface custom_font = Typeface.createFromAsset(getContext().getAssets(), "fonts/"+tx_style+".ttf");
+            textView.setTypeface(custom_font);
+
 
         }
         if (page == 2) {
@@ -57,6 +62,9 @@ public class CategoryListAdapt extends ArrayAdapter<List_Item> {
             TextView textView = (TextView) convertView.findViewById(R.id.txtView3);
             textView.setText(item.getTitle());
             textView.setTextSize(Integer.parseInt(tx_size));
+            Typeface custom_font = Typeface.createFromAsset(getContext().getAssets(), "fonts/"+tx_style+".ttf");
+            textView.setTypeface(custom_font);
+
         }
         return convertView;
     }

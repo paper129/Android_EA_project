@@ -40,12 +40,13 @@
                 android:layout_marginTop="150sp"
                 android:text="Font Sytle"
                 android:id="@+id/txFontStyle"/>
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="230sp"
-                android:layout_marginTop="150sp">
-            </Spinner>
+
+        <Spinner
+            android:id="@+id/fontStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="230sp"
+            android:layout_marginTop="150sp"></Spinner>
 
 
         <LinearLayout

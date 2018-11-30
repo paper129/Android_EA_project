@@ -3,6 +3,7 @@ package com.example.angus.ea_project;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -21,8 +22,9 @@ public class menu_SettingFragment extends Fragment {
 
     private TextView tx_all[] = new TextView[3];
     private int tx_id[] ={R.id.txFontSize,R.id.txFontStyle,R.id.txTheme};
-    private Spinner sp1;
+    private Spinner sp1,sp2;
     private String font_size[]={"14","16","18","22","24","26"};
+    private String font_Style[] = {"font1","font2","font3"};
     public menu_SettingFragment() {
         // Required empty public constructor
     }
@@ -43,9 +45,15 @@ public class menu_SettingFragment extends Fragment {
         }
 
         sp1 = (Spinner) view.findViewById(R.id.fontSize);
-        ArrayAdapter<String> sizeAd = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, font_size);
-        sizeAd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp1.setAdapter(sizeAd);
+        sp2 = (Spinner) view.findViewById(R.id.fontStyle);
+        ArrayAdapter<String> sizeAd1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, font_size);
+        sizeAd1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp1.setAdapter(sizeAd1);
+
+        ArrayAdapter<String> sizeAd2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, font_Style);
+        sizeAd2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp2.setAdapter(sizeAd2);
+
         for(int i=0;i<font_size.length;i++)
         {
             if(font_size[i].equals(data))
@@ -54,7 +62,16 @@ public class menu_SettingFragment extends Fragment {
                 break;
             }
         }
+        for(int i=0;i<font_Style.length;i++)
+        {
+            if(font_Style[i].equals(data))
+            {
+                sp2.setSelection(i,true);
+                break;
+            }
+        }
         sp1.setOnItemSelectedListener(sp1_Lis);
+        sp2.setOnItemSelectedListener(sp2_Lis);
         return view;
     }
     private AdapterView.OnItemSelectedListener sp1_Lis = new AdapterView.OnItemSelectedListener() {
@@ -71,10 +88,32 @@ public class menu_SettingFragment extends Fragment {
 
         }
     };
+
+    private AdapterView.OnItemSelectedListener sp2_Lis = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+            int value = sp2.getSelectedItemPosition();
+            SystemInfo.edit().putString("font_style",font_Style[value]).commit();
+            changeTextStyle(font_Style[value]);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
     private void changeTextSize(String size){
         for (int i=0;i<tx_all.length;i++)
         {
             tx_all[i].setTextSize(Integer.parseInt(size));
+        }
+    }
+    private void changeTextStyle(String style){
+        for (int i=0;i<tx_all.length;i++)
+        {
+            Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/"+style+".ttf");
+            tx_all[i].setTypeface(custom_font);
         }
     }
 
