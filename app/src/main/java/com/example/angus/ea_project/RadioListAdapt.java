@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 /**
@@ -24,7 +26,7 @@ public class RadioListAdapt extends ArrayAdapter<List_Item> {
     private Context context;
     private int resource;
     private String tx_size,tx_style;
-    private int image[]={R.drawable.rthk_01, R.drawable.rthk_02, R.drawable.rthk_03, R.drawable.rthk_04, R.drawable.rthk_05};
+    private String image[]={"http://mqtt.racinglog.pw/EA/rthk_01.png", "http://mqtt.racinglog.pw/EA/rthk_02.png", "http://mqtt.racinglog.pw/EA/rthk_03.png", "http://mqtt.racinglog.pw/EA/rthk_04.png", "http://mqtt.racinglog.pw/EA/rthk_05.png"};
 
 
     public RadioListAdapt(@NonNull Context context, @LayoutRes int resource, @NonNull ArrayList<List_Item> Item, String tx_size,String tx_style) {
@@ -45,8 +47,10 @@ public class RadioListAdapt extends ArrayAdapter<List_Item> {
         }
 
         List_Item item = getItem(position); // Object
+
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imgView3);
-        imageView.setImageResource(image[position]);
+        Picasso.with(getContext().getApplicationContext()).load(image[position]).resize(450, 450).into(imageView);
+
         TextView textView = (TextView) convertView.findViewById(R.id.txtView3);
         textView.setText(item.getTitle());
         textView.setTextSize(Integer.parseInt(tx_size));

@@ -2,6 +2,7 @@ package com.example.angus.ea_project;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -26,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity {
-    DrawerLayout drawerLayout;
+    DrawerLayout drawerLayout ;
     Fragment frag1;
     private TextView tx_headerEmail;
     private  FirebaseAuth firebaseAuth;
@@ -38,10 +39,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         setNavigationDrawer();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close){
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
@@ -49,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
             }
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
                 NavigationView navView = (NavigationView) findViewById(R.id.navigation);
                 Menu menu = navView.getMenu();
                 firebaseAuth = FirebaseAuth.getInstance();

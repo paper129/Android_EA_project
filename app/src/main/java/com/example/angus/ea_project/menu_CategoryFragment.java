@@ -47,9 +47,7 @@ public class menu_CategoryFragment extends Fragment {
     private ArrayList<List_Item> arrayList;
 
     String[ ] item1 ={"MingPao", "Oncc", "Yahoo","Ettoday","HK01","Headline","RTHK","Thinkhk","LTN"};
-    int image1[] ={R.drawable.logo_mingpao, R.drawable.logo_oncc, R.drawable.logo_yahoo, R.drawable.logo_ettoday, R.drawable.logo_hk01, R.drawable.logo_headline, R.drawable.logo_rthk, R.drawable.logo_thinkhk, R.drawable.logo_ltn};
     String[ ] item2 ={"All","Business","Entertainment","Health","Science","Sports","Technology"};
-    int image2[] ={R.drawable.logo_all,R.drawable.logo_business,R.drawable.logo_entertainment,R.drawable.logo_health,R.drawable.logo_science,R.drawable.logo_sports,R.drawable.logo_technology};
 
     public menu_CategoryFragment() {
         // Required empty public constructor
