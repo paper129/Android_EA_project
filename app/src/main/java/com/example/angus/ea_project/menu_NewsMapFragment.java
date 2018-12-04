@@ -66,38 +66,6 @@ public class menu_NewsMapFragment extends Fragment {
             return view;
         }
         final Location location = locationManager.getLastKnownLocation(provider);
-        locationListener = new LocationListener() {
-            String status;
-
-            @Override
-            public void onLocationChanged(Location location) {
-                Log.d("Info System:", String.valueOf(location.getLatitude()) + String.valueOf(location.getLongitude()));
-
-            }
-
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
-
-                //Toast.makeText(MainActivity.this, provider + "'s status changed to "+ status +"!",
-                //Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onProviderEnabled(String s) {
-                //Toast.makeText(MainActivity.this, "Provider " + provider + " enabled!",
-                //Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onProviderDisabled(String s) {
-                //Toast.makeText(MainActivity.this, "Provider " + provider + " disabled!",
-                //Toast.LENGTH_SHORT).show();
-
-            }
-        };
-
-
         try {
             double latitude = 0;
             latitude = location.getLatitude();
