@@ -64,20 +64,22 @@
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        android:layout_marginStart="55dp"
-        android:layout_marginEnd="55dp" />
+        android:layout_marginStart="54dp"
+        android:layout_marginEnd="54dp" />
 
-    <TextView
-        android:id="@+id/User_Login"
+    <Button
+        android:id="@+id/btn_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="43dp"
+        android:textColor="#A0A0A0"
+        android:background="@android:color/transparent"
         android:text="Already Signed in? Login"
-        android:textSize="22sp"
-        app:layout_constraintLeft_toLeftOf="@+id/User_Register"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/User_Register"
         tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1" />
+
 </android.support.constraint.ConstraintLayout>

@@ -25,9 +25,10 @@
 
                 <Spinner
                 android:id="@+id/fontSize"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="230sp"
+                android:layout_width="150sp"
+                android:layout_height="30sp"
+                android:layout_alignParentRight="true"
+
                 android:layout_marginTop="80sp" />
 
 
@@ -43,9 +44,10 @@
 
         <Spinner
             android:id="@+id/fontStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="230sp"
+            android:layout_width="150sp"
+            android:layout_height="30sp"
+            android:layout_alignParentRight="true"
+
             android:layout_marginTop="150sp"></Spinner>
 
 

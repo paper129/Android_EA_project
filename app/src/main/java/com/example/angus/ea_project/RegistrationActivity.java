@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
     private String email ,name,password;
+    private Button btn_finish;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,9 @@ public class RegistrationActivity extends AppCompatActivity {
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userName.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                userPassword.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                userEmail.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 if(validate())
                 {
                     //upload to database
@@ -65,6 +70,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         });
+        btn_finish.setOnClickListener(btn_finish_Lis);
     }
 
     private void setupUIViews(){
@@ -72,7 +78,7 @@ public class RegistrationActivity extends AppCompatActivity {
         userPassword = (EditText) findViewById(R.id.User_Password);
         userEmail = (EditText) findViewById(R.id.User_Email);
         regButton = (Button) findViewById(R.id.User_Register);
-        userLogin = (TextView) findViewById(R.id.User_Login);
+        btn_finish = (Button) findViewById(R.id.btn_finish);
     }
     private boolean validate(){
         boolean result = false;
@@ -115,5 +121,11 @@ public class RegistrationActivity extends AppCompatActivity {
         UserData userData = new UserData(following_data);
         myRef.setValue(userData);
     }
+    private View.OnClickListener btn_finish_Lis = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+         finish();
+        }
+    };
 
 }

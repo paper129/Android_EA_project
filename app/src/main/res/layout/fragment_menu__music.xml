@@ -23,10 +23,9 @@
             tools:layout_constraintTop_creator="1" />
     </android.support.constraint.ConstraintLayout>
     <RelativeLayout
-        android:layout_marginTop="595dp"
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="70sp"
         android:background="#44A9A9A9"
         android:layout_gravity="bottom">
 
@@ -51,11 +50,11 @@
 
         <Button
             android:id="@+id/small_button"
-            android:layout_width="36dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="15sp"
-            android:layout_marginLeft="300sp"
-            android:layout_marginRight="10sp"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50sp"
+            android:layout_marginTop="25sp"/>
 
 
     </RelativeLayout>

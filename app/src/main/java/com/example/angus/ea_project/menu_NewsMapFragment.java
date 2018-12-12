@@ -62,7 +62,7 @@ public class menu_NewsMapFragment extends Fragment {
 
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             return view;
         }
         final Location location = locationManager.getLastKnownLocation(provider);
@@ -135,4 +135,5 @@ public class menu_NewsMapFragment extends Fragment {
 
         return view;
     }
+
 }
