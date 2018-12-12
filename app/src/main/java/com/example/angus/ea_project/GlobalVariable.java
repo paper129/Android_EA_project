@@ -1,6 +1,9 @@
 package com.example.angus.ea_project;
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.preference.PreferenceActivity;
 
 public class GlobalVariable extends Application {
     private int sharePlaying;
@@ -20,4 +23,6 @@ public class GlobalVariable extends Application {
     {
         return playingnow;
     }
+
+
 }

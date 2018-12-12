@@ -2,7 +2,9 @@ package com.example.angus.ea_project;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,16 +17,19 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class menu_SettingFragment extends Fragment {
 
-    private TextView tx_all[] = new TextView[3];
-    private int tx_id[] ={R.id.txFontSize,R.id.txFontStyle,R.id.txTheme};
+    private TextView tx_all[] = new TextView[2];
+    private int tx_id[] ={R.id.txFontSize,R.id.txFontStyle};
     private Spinner sp1,sp2;
     private String font_size[]={"14","16","18","22","24","26"};
-    private String font_Style[] = {"font1","font2","font3"};
+    private String font_Style[] = {"font1","font2"};
+
     public menu_SettingFragment() {
         // Required empty public constructor
     }
@@ -37,12 +42,16 @@ public class menu_SettingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_menu__setting, container, false);
         SharedPreferences SystemInfo = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         String data = SystemInfo.getString("font_size", "22");
+
         Log.d("System Info",data);
+
         for (int i=0;i<tx_all.length;i++)
         {
             tx_all[i] =(TextView) view.findViewById(tx_id[i]);
             tx_all[i].setTextSize(Integer.parseInt(data));
+
         }
+
 
         sp1 = (Spinner) view.findViewById(R.id.fontSize);
         sp2 = (Spinner) view.findViewById(R.id.fontStyle);
@@ -59,6 +68,7 @@ public class menu_SettingFragment extends Fragment {
             if(font_size[i].equals(data))
             {
                 sp1.setSelection(i,true);
+
                 break;
             }
         }
@@ -72,6 +82,8 @@ public class menu_SettingFragment extends Fragment {
         }
         sp1.setOnItemSelectedListener(sp1_Lis);
         sp2.setOnItemSelectedListener(sp2_Lis);
+
+
         return view;
     }
     private AdapterView.OnItemSelectedListener sp1_Lis = new AdapterView.OnItemSelectedListener() {
@@ -103,6 +115,9 @@ public class menu_SettingFragment extends Fragment {
 
         }
     };
+
+
+
     private void changeTextSize(String size){
         for (int i=0;i<tx_all.length;i++)
         {
@@ -118,4 +133,7 @@ public class menu_SettingFragment extends Fragment {
     }
 
 
+
 }
+
+
